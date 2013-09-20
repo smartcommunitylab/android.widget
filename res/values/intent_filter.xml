@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dt -->
+    <string name="events_intent_action">eu.trentorise.smartcampus.widget.EVENTS</string>
+    <string name="stories_intent_action">eu.trentorise.smartcampus.widget.STORIES</string>
+    <string name="places_intent_action">eu.trentorise.smartcampus.widget.PLACES</string>
+    <string name="map_intent_action">eu.trentorise.smartcampus.widget.MAP</string>
+    <!-- jp intent -->
+    <string name="plan_journey_intent_action">eu.trentorise.smartcampus.widget.PLAN_JOURNEY</string>
+    <string name="monitor_journey_intent_action">eu.trentorise.smartcampus.widget.MONITOR_JOURNEY</string>
+    <string name="saved_journey_intent_action">eu.trentorise.smartcampus.widget.SAVED_JOURNEY</string>
+    <string name="notifications_intent_action">eu.trentorise.smartcampus.widget.NOTIFICATIONS_JOURNEY</string>
+    <string name="signals_intent_action">eu.trentorise.smartcampus.widget.SIGNALS</string>
+    <string name="real_time_info_intent_action">eu.trentorise.smartcampus.widget.REAL_TIME</string>
+    <string name="preferences_info_intent_action">eu.trentorise.smartcampus.widget.PREFERENCES</string>
+    
+</resources>

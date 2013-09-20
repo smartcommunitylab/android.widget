@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dt fragment -->
+
+
+    <!-- <string name="events_fragment">EventsLististingFragment</string> -->
+    <!-- <string name="places_fragment">PoisListingFragment</string> -->
+    <!-- <string name="stories_fragment">StoriesListingFragment</string> -->
+    <!-- <string name="map_fragment">StoriesListingFragment</string> -->
+
+
+    <!-- pois categories -->
+    <string name="museum_category">Museums</string>
+    <string name="mobility_category">Mobility</string>
+    <string name="parking_category">Parking</string>
+    <string name="service_category">Offices</string>
+    <string name="theater_category">Theater</string>
+    <string name="university_category">University</string>
+    <string name="hotel_category">Accomodation</string>
+    <string name="library_category">Libraries</string>
+    <string name="restaurant_category">Food</string>
+    <string name="bar_category">Drink</string>
+    <string name="cinema_category">Cinemas</string>
+    <string name="family_category">Family - Organizations</string>
+    <string name="other_poi_category">Other place</string>
+
+    <!-- events categories -->
+    <string name="concert_category">Concerts</string>
+    <string name="happy_hour_category">Happy hours</string>
+    <string name="movies_category">Movies</string>
+    <string name="parties_category">Parties</string>
+    <string name="seminar_category">Seminars</string>
+    <string name="theaters_category">Theaters</string>
+    <string name="exhibitions_category">Exhibitions</string>
+    <string name="family_category">Family</string>
+    <string name="other_category">Other event</string>
+    <string name="today_category">Today</string>
+    <string name="my_category">My</string>
+ 
+    <!-- stories categories -->
+    <string name="leisure_category">Leisure</string>
+    <string name="office_category">Offices and Services</string>
+    <string name="university_category">University</string>
+    <string name="culture_category">Culture</string>
+    <string name="other_story_category">Other story</string>
+    <!-- jp fragment -->
+    <string name="tt_fragment">SmartCheckTTFragment</string>
+    <!-- lines -->
+    <string-array name="agency_id">
+        <item>5</item>
+        <item>6</item>
+        <item>10</item>
+        <item>12</item>
+        <item>16</item>
+        <item>17</item>
+    </string-array>
+
+    <!-- Trento urbano -->
+    <string-array name="smart_check_12_numbers">
+        <item>_A</item>
+        <item>_B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>NP</item>
+        <item>FUTS</item>
+    </string-array>
+
+</resources>
