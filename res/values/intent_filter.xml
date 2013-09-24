@@ -12,7 +12,9 @@
     <string name="saved_journey_intent_action">eu.trentorise.smartcampus.widget.SAVED_JOURNEY</string>
     <string name="notifications_intent_action">eu.trentorise.smartcampus.widget.NOTIFICATIONS_JOURNEY</string>
     <string name="signals_intent_action">eu.trentorise.smartcampus.widget.SIGNALS</string>
-    <string name="real_time_info_intent_action">eu.trentorise.smartcampus.widget.REAL_TIME</string>
+    <string name="real_time_info_bus_intent_action">eu.trentorise.smartcampus.widget.REAL_TIME_BUS</string>
+    <string name="real_time_info_train_intent_action">eu.trentorise.smartcampus.widget.REAL_TIME_TRAIN</string>   
+    <string name="real_time_info_parking_intent_action">eu.trentorise.smartcampus.widget.REAL_TIME_PARKING</string>
     <string name="preferences_info_intent_action">eu.trentorise.smartcampus.widget.PREFERENCES</string>
     
 </resources>

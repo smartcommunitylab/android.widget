@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="eu.trentorise.smartcampus.widget.shortcuts.ConfigurationActivity"
     android:initialLayout="@layout/shortcuts_widget"
-    android:minHeight="72dp"
-    android:minWidth="146dp"
-    android:updatePeriodMillis="1800000" >
-<!--     android:configure="eu.trentorise.smartcampus.vivitrento.widget.shortcuts.ConfigurationActivity" -->
-    
-</appwidget-provider> 
+    android:minHeight="180dp"
+    android:minWidth="250dp"
+    android:updatePeriodMillis="1800000" />

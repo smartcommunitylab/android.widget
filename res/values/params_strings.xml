@@ -44,6 +44,8 @@
     <string name="university_category">University</string>
     <string name="culture_category">Culture</string>
     <string name="other_story_category">Other story</string>
+    
+    
     <!-- jp fragment -->
     <string name="tt_fragment">SmartCheckTTFragment</string>
     <!-- lines -->

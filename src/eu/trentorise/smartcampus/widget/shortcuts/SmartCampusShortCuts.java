@@ -13,11 +13,7 @@ import android.widget.Toast;
 public class SmartCampusShortCuts extends AppWidgetProvider {
 	private static final String ACTION_CLICK = "ACTION_CLICK";
 	private  WidgetHelper helper = null;
-	@Override
-	public void onEnabled(Context context) {
-		super.onEnabled(context);
-		Toast.makeText(context, "Set shortcuts", Toast.LENGTH_SHORT).show();
-	}
+
 	  @Override
 	  public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 	      int[] appWidgetIds) {
@@ -30,42 +26,53 @@ public class SmartCampusShortCuts extends AppWidgetProvider {
 	        for (int i=0; i<N; i++) {
 	            int appWidgetId = appWidgetIds[i];
 	            // Create an Intent to launch ExampleActivity
-//	            Intent intent = new Intent(context, DiscoverTrentoActivity.class);
-	            Intent intent = new Intent();
-	    		intent.setAction(context.getString(helper.DTBOOKMARKS[0].intent));
-	            intent.putExtra(helper.DTBOOKMARKS[0].params.get(0).name, helper.DTBOOKMARKS[0].params.get(0).value);
-	            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.shortcuts_widget);
+
+				/*test luoghi*/
+	            Intent intent1 = new Intent();
+	            intent1.setAction(context.getString(helper.DTBOOKMARKS[0].intent));
+	            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 	                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            //dt non ne ha bisogno poiche' e' unica activity
-	            PendingIntent dtpendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-	            intent = new Intent();
-	    		intent.setAction(context.getString(helper.DTBOOKMARKS[1].intent));
-	            intent.putExtra(helper.DTBOOKMARKS[1].params.get(0).name, helper.DTBOOKMARKS[1].params.get(0).value);
-	            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+	            PendingIntent dt1pendingIntent = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);            
+	            
+
+				/*test musei*/
+
+	            Intent intent2 = new Intent();
+	            intent2.setAction(context.getString(helper.DTBOOKMARKS[1].intent));
+	            intent2.putExtra(helper.DTBOOKMARKS[1].params.get(0).name, helper.DTBOOKMARKS[1].params.get(0).value);
+	            intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 	                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            //dt non ne ha bisogno poiche' e' unica activity
-	            PendingIntent dt2pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+	            PendingIntent dt2pendingIntent = PendingIntent.getActivity(context, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 	            
-	            
-//	            intent = new Intent();
-//	    		intent.setAction(context.getString(R.string.real_time_info_intent_action));
-//
-//	    		intent.putExtra(helper.JPBOOKMARKS[0].params.get(0).name, helper.JPBOOKMARKS[0].params.get(0).value);
-//	    		intent.putExtra(helper.JPBOOKMARKS[0].params.get(1).name, helper.JPBOOKMARKS[0].params.get(1).value);
-//	    		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-//	                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//	            PendingIntent jppendingIntent =
-//	                    TaskStackBuilder.create(context)
-//	                                    // add all of DetailsActivity's parents to the stack,
-//	                                    // followed by DetailsActivity itself
-//	                                    .addNextIntentWithParentStack(intent)
-//	                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+				/*test bus singolo trip (A)*/
+
+	            Intent intent3 = new Intent();
+	            intent3.setAction(context.getString(R.string.real_time_info_bus_intent_action));
+	            intent3.putExtra(helper.JPBOOKMARKSBUS[0].params.get(0).name, helper.JPBOOKMARKSBUS[0].params.get(0).value);
+	            intent3.putExtra(helper.JPBOOKMARKSBUS[0].params.get(1).name, helper.JPBOOKMARKSBUS[0].params.get(1).value);
+	            intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+	                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	            PendingIntent jppendingIntent =
+	                    TaskStackBuilder.create(context)
+	                                    // add all of DetailsActivity's parents to the stack,
+	                                    // followed by DetailsActivity itself
+	                                    .addNextIntentWithParentStack(intent3)
+	                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
 	            // Get the layout for the App Widget and attach an on-click listener
 	            // to the button
-				RemoteViews views = new RemoteViews(context.getPackageName(),R.layout.shortcuts_widget);
-	            views.setOnClickPendingIntent(R.id.button1, dtpendingIntent);
+	            views.setOnClickPendingIntent(R.id.button1, dt1pendingIntent);
+
 	            views.setOnClickPendingIntent(R.id.button2, dt2pendingIntent);
+	            
+	            views.setOnClickPendingIntent(R.id.button3, jppendingIntent);
+	            
+	            views.setOnClickPendingIntent(R.id.button4, dt2pendingIntent);
+	            views.setOnClickPendingIntent(R.id.button5, dt2pendingIntent);
+	            views.setOnClickPendingIntent(R.id.button6, dt2pendingIntent);
+
 	            
 //	            views.setOnClickPendingIntent(R.id.button2, jppendingIntent);
 
