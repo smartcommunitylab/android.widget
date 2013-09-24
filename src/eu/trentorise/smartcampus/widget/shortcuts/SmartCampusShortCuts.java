@@ -1,12 +1,15 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
+
 import eu.trentorise.smartcampus.widget.R;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -81,5 +84,16 @@ public class SmartCampusShortCuts extends AppWidgetProvider {
 	            
 
 	  }
+	        
+
 }
+	  
+      static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+              int appWidgetId, String titlePrefix) {
+          Log.d("Widget", "updateAppWidget appWidgetId=" + appWidgetId + " titlePrefix=" + titlePrefix);
+
+          RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.shortcuts_widget);
+          // Tell the widget manager
+          appWidgetManager.updateAppWidget(appWidgetId, views);
+      }
 }
