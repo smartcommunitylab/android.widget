@@ -63,7 +63,10 @@ public class SmartCampusShortCuts extends AppWidgetProvider {
 	                                    // followed by DetailsActivity itself
 	                                    .addNextIntentWithParentStack(intent3)
 	                                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
+	            /*test di andata*/
+	            
+	            /*test sul treno*/
+	            /*test parcheggio*/
 	            // Get the layout for the App Widget and attach an on-click listener
 	            // to the button
 	            views.setOnClickPendingIntent(R.id.button1, dt1pendingIntent);
@@ -88,12 +91,5 @@ public class SmartCampusShortCuts extends AppWidgetProvider {
 
 }
 	  
-      static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-              int appWidgetId, String titlePrefix) {
-          Log.d("Widget", "updateAppWidget appWidgetId=" + appWidgetId + " titlePrefix=" + titlePrefix);
 
-          RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.shortcuts_widget);
-          // Tell the widget manager
-          appWidgetManager.updateAppWidget(appWidgetId, views);
-      }
 }

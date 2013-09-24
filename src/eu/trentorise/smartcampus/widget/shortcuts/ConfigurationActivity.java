@@ -57,11 +57,10 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	        public void onClick(View v) {
 	            final Context context = ConfigurationActivity.this;
 
-
 	            // Push widget update to surface with newly set prefix
-	            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-	            SmartCampusShortCuts.updateAppWidget(context, appWidgetManager,
-	                    mAppWidgetId, null);
+//	            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+//	            SmartCampusShortCuts.updateAppWidget(context, appWidgetManager,
+//	                    mAppWidgetId, null);
 
 	            // Make sure we pass back the original appWidgetId
 	            Intent resultValue = new Intent();
