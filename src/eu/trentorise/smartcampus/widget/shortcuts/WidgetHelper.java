@@ -12,6 +12,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import eu.trentorise.smartcampus.jp.custom.data.SmartLine;
 import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
+import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
 import eu.trentorise.smartcampus.widget.R;
 
 public class WidgetHelper {
@@ -35,6 +36,7 @@ public class WidgetHelper {
 		/*put params for bus lines*/
 
 		List<SmartLine> busLines=null;
+		List<SmartLine> trainLines=null;
 		String[] agencyIds = new String[] { RoutesHelper.AGENCYID_BUS_ROVERETO, RoutesHelper.AGENCYID_BUS_TRENTO  };
 
 
@@ -47,12 +49,17 @@ public class WidgetHelper {
 		agencyIds = new String[] { RoutesHelper.AGENCYID_TRAIN_BZVR, RoutesHelper.AGENCYID_TRAIN_TM,
 				RoutesHelper.AGENCYID_TRAIN_TNBDG };
 		for (int i = 0; i<agencyIds.length;i++){
-			busLines = RoutesHelper.getSmartLines(ctx, agencyIds[i]);
-			JPBOOKMARKSTRAINS = initjpbookmarklines(R.string.real_time_info_train_intent_action,agencyIds[i], busLines);
+			List<RouteDescriptor> trainLinesDescriptors = RoutesHelper.getRouteDescriptorsList(agencyIds);
+			trainLines = new ArrayList<SmartLine>();
+			for (RouteDescriptor route:trainLinesDescriptors){
+				trainLines.add(new SmartLine(null, route.getAgencyId(), 0, null, null, Arrays.asList(route.getRouteId())));
+			}
+//			trainLines = RoutesHelper.getSmartLines(ctx, agencyIds[i]);
+
+			JPBOOKMARKSTRAINS = initjpbookmarklines(R.string.real_time_info_train_intent_action,agencyIds[i], trainLines);
 
 		}
 
-		/*put params for parking*/
 		
 	}
 
