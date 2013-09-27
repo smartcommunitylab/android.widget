@@ -1,5 +1,9 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
+import java.util.Arrays;
+
+import org.json.JSONArray;
+
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +19,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 
 import eu.trentorise.smartcampus.widget.R;
+import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 
 public class ConfigurationActivity extends SherlockFragmentActivity {
 	int mAppWidgetId;
@@ -63,7 +68,22 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 //	                    mAppWidgetId, null);
 
 	            // Make sure we pass back the original appWidgetId
-	            Intent resultValue = new Intent();
+	            WidgetHelper helper = new WidgetHelper(context);
+	        	String[] DTPREFERENCES;
+	        	String[] JPPREFERENCES;
+	    		/* Load prefix values */
+	    		DTPREFERENCES = new String[2];
+	    		DTPREFERENCES[0] =JSONSharedPreferences.convertToJSON(helper.DTBOOKMARKS[0]);
+	    		DTPREFERENCES[1] =JSONSharedPreferences.convertToJSON(helper.DTBOOKMARKS[1]);		
+	    		JPPREFERENCES = new String[4];
+	    		JPPREFERENCES[0] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[0]);
+	    		JPPREFERENCES[1] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[1]);	
+	    		JPPREFERENCES[2] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[2]);
+	    		JPPREFERENCES[3] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[3]);	
+	    		JSONSharedPreferences.saveJSONArray(context, "WIDGET", "DTPREFERENCES",new JSONArray(Arrays.asList(DTPREFERENCES)));
+	    		JSONSharedPreferences.saveJSONArray(context, "WIDGET", "JPPREFERENCES",new JSONArray(Arrays.asList(JPPREFERENCES)));
+
+	    		Intent resultValue = new Intent();
 	            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
 	            setResult(RESULT_OK, resultValue);
 	            finish();

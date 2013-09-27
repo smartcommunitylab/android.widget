@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -21,6 +23,10 @@ public class WidgetHelper {
 	public BookmarkDescriptor[] JPBOOKMARKSBUS=null;
 	public BookmarkDescriptor[] JPBOOKMARKSTRAINS=null;
 	public BookmarkDescriptor[] JPBOOKMARKSPARK=null;
+	public BookmarkDescriptor[] JPBOOKMARKS=null;
+	public BookmarkDescriptor[] ALLBOOKMARKS = null;
+
+	
 
 	public WidgetHelper(Context ctx) {
 		this.ctx = ctx;
@@ -59,8 +65,11 @@ public class WidgetHelper {
 			JPBOOKMARKSTRAINS = initjpbookmarklines(R.string.real_time_info_train_intent_action,agencyIds[i], trainLines);
 
 		}
+		JPBOOKMARKSPARK = new BookmarkDescriptor[1];
+		JPBOOKMARKSPARK[0]= new BookmarkDescriptor(R.string.real_time_info_parking_intent_action,  null);
 
-		
+		JPBOOKMARKS = concat(JPBOOKMARKSBUS, JPBOOKMARKSTRAINS);
+		JPBOOKMARKS = concat(JPBOOKMARKS, JPBOOKMARKSPARK);
 	}
 
 	private BookmarkDescriptor[] initjpbookmarklines(int action, final String agencyId, List<SmartLine> busLines) {
@@ -217,24 +226,57 @@ public class WidgetHelper {
 				}) };
 	}
 
-	public static class BookmarkDescriptor {
+	public static class BookmarkDescriptor  implements Parcelable{
 		public int intent;
 		public List<Param> params;
 
+		public BookmarkDescriptor() {
+		}
 		public BookmarkDescriptor(int intent, List<Param> params) {
 			super();
 			this.intent = intent;
 			this.params = params;
 		}
+
+		@Override
+		public int describeContents() {
+			return 0;
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			
+		}
 	}
 
-	public static class Param {
-		public String name;
+	public static class Param implements Parcelable {
 		public String value;
+		public String name;
 
+		public Param() {
+		}
 		public Param(String name, String value) {
 			this.name = name;
 			this.value = value;
 		}
+
+		@Override
+		public int describeContents() {
+			return 0;
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			
+		}
 	}
+	
+	BookmarkDescriptor[] concat(BookmarkDescriptor[] A, BookmarkDescriptor[] B) {
+		   int aLen = A.length;
+		   int bLen = B.length;
+		   BookmarkDescriptor[] C= new BookmarkDescriptor[aLen+bLen];
+		   System.arraycopy(A, 0, C, 0, aLen);
+		   System.arraycopy(B, 0, C, aLen, bLen);
+		   return C;
+		}
 }
