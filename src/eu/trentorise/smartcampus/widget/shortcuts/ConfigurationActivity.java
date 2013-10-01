@@ -16,12 +16,14 @@ import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
-
-
 import eu.trentorise.smartcampus.widget.R;
-import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
+
+
+
+
 
 public class ConfigurationActivity extends SherlockFragmentActivity {
+	
 	int mAppWidgetId;
 
 	private int widgetID;
@@ -77,9 +79,9 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	    		DTPREFERENCES[1] =JSONSharedPreferences.convertToJSON(helper.DTBOOKMARKS[1]);		
 	    		JPPREFERENCES = new String[4];
 	    		JPPREFERENCES[0] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[0]);
-	    		JPPREFERENCES[1] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[1]);	
-	    		JPPREFERENCES[2] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[2]);
-	    		JPPREFERENCES[3] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[3]);	
+	    		JPPREFERENCES[1] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[10]);	
+	    		JPPREFERENCES[2] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[28]);
+	    		JPPREFERENCES[3] =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[29]);	
 	    		JSONSharedPreferences.saveJSONArray(context, "WIDGET", "DTPREFERENCES",new JSONArray(Arrays.asList(DTPREFERENCES)));
 	    		JSONSharedPreferences.saveJSONArray(context, "WIDGET", "JPPREFERENCES",new JSONArray(Arrays.asList(JPPREFERENCES)));
 

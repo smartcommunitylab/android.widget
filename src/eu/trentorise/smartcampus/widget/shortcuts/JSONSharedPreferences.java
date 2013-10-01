@@ -9,9 +9,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
+
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 
 public class JSONSharedPreferences {
     private static final String PREFIX = "json";

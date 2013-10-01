@@ -13,6 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <string name="empty_view_text">This is the empty view</string>
-</resources>
+<appwidget-provider
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="300dip"
+  android:minHeight="150dip"
+  android:updatePeriodMillis="3600000"
+  android:previewImage="@drawable/preview"
+  android:initialLayout="@layout/widget_layout"
+  android:autoAdvanceViewId="@id/stack_view">
+</appwidget-provider>
