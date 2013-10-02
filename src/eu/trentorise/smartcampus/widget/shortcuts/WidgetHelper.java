@@ -23,11 +23,13 @@ public class WidgetHelper {
 	public static final String PARAM_COLOR = "COLOR";
 	public static final String PARAM_RESOURCE = "RESOURCE";
 	public static final String PARAM_AGENCY_ID = "AGENCY_ID";
-	public static final String PARAM_ROUTE_ID = "PARAM_ROUTE_ID";
+	public static final String PARAM_ROUTE_ID = "ROUTE_ID";
 	public static final String PARAM_CATEGORY = "CATEGORY";
 
 	public static final String TYPE_DT = "TYPE_DT";
 	public static final String TYPE_JP = "TYPE_JP";
+	public static final String TYPE_JP_PARKINGS = "TYPE_JP_PARKINGS";
+
 
 
 	public BookmarkDescriptor[] DTBOOKMARKS = null;
@@ -77,7 +79,14 @@ public class WidgetHelper {
 
 		}
 		JPBOOKMARKSPARK = new BookmarkDescriptor[1];
-		JPBOOKMARKSPARK[0] = new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action), null);
+		JPBOOKMARKSPARK[0] = new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action), new ArrayList<Param>() {
+			{
+				add(new Param(PARAM_TYPE, TYPE_JP_PARKINGS));
+				add(new Param(PARAM_COLOR, Integer.toString(R.color.jpappcolor)));
+				add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_p_parkings)));
+
+			}
+		});
 
 		JPBOOKMARKS = concat(JPBOOKMARKSBUS, JPBOOKMARKSTRAINS);
 		JPBOOKMARKS = concat(JPBOOKMARKS, JPBOOKMARKSPARK);

@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 
+import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.Param;
@@ -28,7 +29,18 @@ import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.Param;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -120,31 +132,62 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// file, and set the
 		// text based on the position.
 		RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
-
+		ShapeDrawable sd1 = new ShapeDrawable(new RectShape());
+		sd1.getPaint().setColor(0xFFFFFFFF);
+		sd1.getPaint().setStyle(Style.STROKE);
+		sd1.getPaint().setStrokeWidth(1);
+		Canvas c = new Canvas();
+		sd1.draw(c);
+		Bitmap b =Bitmap.createBitmap(120, 120, Bitmap.Config.ARGB_8888);
+				c.drawBitmap(b, 0, 0, sd1.getPaint());
 		// Next, we set a fill-intent which will be used to fill-in the
 		// pending intent template
 		// which is set on the collection view in StackWidgetProvider.
 		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {
 			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
-
 			// set the widgetbutton
 			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {
-				String type =myDescriptor.params.get(0).value;
-				if (WidgetHelper.TYPE_DT.equals(type)){
-					//dt -> put icons and hide text
-//					int resource = 
-//					rv.setImageViewResource(R.id.image_widget_item, );
+				String type = myDescriptor.params.get(0).value;
+				if (WidgetHelper.TYPE_DT.equals(type)) {
+					// dt -> put icons and hide text
 					rv.setViewVisibility(R.id.text_widget_item, View.GONE);
-//					android:src="@drawable/ab_solid_journeyplanner"
-//					rv.setInt(R.id.image_widget_item, "setBackgroundResource", Integer.parseInt(myDescriptor.params.get(1).value));
-					rv.setInt(R.id.layout, "setBackgroundResource", Integer.parseInt(myDescriptor.params.get(1).value));
+					rv.setImageViewResource(R.id.image_widget_item, Integer.parseInt(myDescriptor.params.get(2).value));
 
-				} else if (WidgetHelper.TYPE_JP.equals(type)){
-					//jp -> put text and hide icon
-					rv.setTextViewText(R.id.text_widget_item, myDescriptor.params.get(4).value);
+					rv.setInt(R.id.image_widget_item, "setBackgroundResource", R.drawable.rounded_border_dt);
+
+				} else if (WidgetHelper.TYPE_JP.equals(type)) {
+					// jp -> put text and hide icon
+
 					rv.setViewVisibility(R.id.image_widget_item, View.GONE);
-					rv.setInt(R.id.text_widget_item, "setBackgroundResource", Integer.parseInt(myDescriptor.params.get(1).value));
+					// rv.setImageViewBitmap(R.id.text_widget_item,
+					// getBackground(Color.parseColor("#6EB046")));
+					if (!( "0".equals(myDescriptor.params.get(2).value )))
+					{
+						//bus
+						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 80);
 
+						rv.setTextViewText(R.id.text_widget_item, RoutesHelper.getShortNameByRouteIdAndAgencyID(
+								myDescriptor.params.get(4).value, myDescriptor.params.get(3).value));
+						rv.setTextColor(R.id.text_widget_item,Integer.parseInt(myDescriptor.params.get(2).value));//rv.setInt(R.id.text_widget_item, "setBackgroundColor",
+								//Integer.parseInt(myDescriptor.params.get(2).value));
+						rv.setInt(R.id.text_widget_item, "setBackgroundResource", R.drawable.rounded_border_jp);
+
+					}
+					else
+					{
+						//train
+						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 12);
+						rv.setTextViewText(R.id.text_widget_item, mContext.getString(RoutesHelper.getRouteDescriptorByRouteId( myDescriptor.params.get(3).value,myDescriptor.params.get(4).value).getNameResource()));
+						rv.setTextColor(R.id.text_widget_item,Color.BLACK);//Int(R.id.text_widget_item, "setBackgroundColor",Color.BLACK);
+						rv.setInt(R.id.text_widget_item, "setBackgroundResource", R.drawable.rounded_border_jp);
+
+					}
+
+				} else if (WidgetHelper.TYPE_JP_PARKINGS.equals(type)) {
+					// jp parcheggio -> put text and hide icon
+					rv.setViewVisibility(R.id.text_widget_item, View.GONE);
+					rv.setImageViewResource(R.id.image_widget_item, Integer.parseInt(myDescriptor.params.get(2).value));
+					rv.setInt(R.id.image_widget_item, "setBackgroundResource", R.drawable.rounded_border_jp);
 
 				}
 				BookmarkDescriptor bookmark = myDescriptor;
@@ -159,23 +202,13 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 				}
 				Intent fillInIntent = new Intent(bookmark.getIntent());
 				fillInIntent.putExtras(extras);
-				rv.setOnClickFillInIntent(R.id.text_widget_item, fillInIntent);
+				rv.setOnClickFillInIntent(R.id.layout, fillInIntent);
 			}
-			// You can do heaving lifting in here, synchronously. For example,
-			// if you need to
-			// process an image, fetch something from the network, etc., it is
-			// ok to do it here,
-			// synchronously. A loading view will show up in lieu of the actual
-			// contents in the
-			// interim.
-			// try {
-			// System.out.println("Loading view " + position);
-			// Thread.sleep(500);
-			// } catch (InterruptedException e) {
-			// e.printStackTrace();
-			// }
+
 		}
 		// Return the remote views object.
+		// AppWidgetManager manager = AppWidgetManager.getInstance(mContext);
+		// manager.updateAppWidget(thisWidget, rv);
 		return rv;
 	}
 
@@ -210,5 +243,62 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// in its current state while work is being done here, so you don't need
 		// to worry about
 		// locking up the widget.
+	}
+
+	// public static Bitmap getBackground(int bgColor, int width, int height,
+	// Context context) {
+	// try {
+	// // convert to HSV to lighten and darken
+	// int alpha = Color.alpha(bgColor);
+	// float[] hsv = new float[3];
+	// Color.colorToHSV(bgColor, hsv);
+	// hsv[2] -= .1;
+	// int darker = Color.HSVToColor(alpha, hsv);
+	// hsv[2] += .3;
+	// int lighter = Color.HSVToColor(alpha, hsv);
+	//
+	// // create gradient useng lighter and darker colors
+	// GradientDrawable gd = new GradientDrawable(
+	// GradientDrawable.Orientation.LEFT_RIGHT,new int[] { darker, lighter});
+	// gd.setGradientType(GradientDrawable.RECTANGLE);
+	// // set corner size
+	// gd.setCornerRadii(new float[] {4,4,4,4,4,4,4,4});
+	//
+	// // get density to scale bitmap for device
+	// float dp = context.getResources().getDisplayMetrics().density;
+	//
+	// // create bitmap based on width and height of widget
+	// Bitmap bitmap = Bitmap.createBitmap(Math.round(width * dp),
+	// Math.round(height * dp),
+	// Bitmap.Config.ARGB_8888);
+	// Canvas canvas = new Canvas(bitmap);
+	// gd.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+	// gd.draw(canvas);
+	// return bitmap;
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return null;
+	// }
+	// }
+
+	public static Bitmap getBackground(int bgcolor) {
+		try {
+			Bitmap.Config config = Bitmap.Config.ARGB_8888; // Bitmap.Config.ARGB_8888
+															// Bitmap.Config.ARGB_4444
+															// to be used as
+															// these two config
+															// constant supports
+															// transparency
+			Bitmap bitmap = Bitmap.createBitmap(2, 2, config); // Create a
+																// Bitmap
+
+			Canvas canvas = new Canvas(bitmap); // Load the Bitmap to the Canvas
+			canvas.drawColor(bgcolor); // Set the color
+
+			return bitmap;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
