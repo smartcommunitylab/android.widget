@@ -79,7 +79,9 @@ public class WidgetHelper {
 
 		}
 		JPBOOKMARKSPARK = new BookmarkDescriptor[1];
-		JPBOOKMARKSPARK[0] = new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action), new ArrayList<Param>() {
+		JPBOOKMARKSPARK[0] = new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+				ctx.getString(R.string.widget_poi_parking ),
+				new ArrayList<Param>() {
 			{
 				add(new Param(PARAM_TYPE, TYPE_JP_PARKINGS));
 				add(new Param(PARAM_COLOR, Integer.toString(R.color.jpappcolor)));
@@ -95,7 +97,9 @@ public class WidgetHelper {
 	private BookmarkDescriptor[] initjpbookmarklines(String action, final String agencyId, List<SmartLine> busLines) {
 		List<BookmarkDescriptor> lines = new ArrayList<WidgetHelper.BookmarkDescriptor>();
 		for (final SmartLine line : busLines) {
-			lines.add(new BookmarkDescriptor(action, new ArrayList<Param>() {
+			lines.add(new BookmarkDescriptor(action,
+					line.getRoutesShorts().get(0),
+					new ArrayList<Param>() {
 				{
 					add(new Param(PARAM_TYPE, TYPE_JP));
 					add(new Param(PARAM_COLOR, Integer.toString(R.color.jpappcolor)));
@@ -111,14 +115,16 @@ public class WidgetHelper {
 
 	private void initDTBookmarks() {
 		DTBOOKMARKS = new BookmarkDescriptor[] {
-				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.tab_places ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_p_other)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_museum ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -126,7 +132,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.museum_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_mobility ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -134,7 +141,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.mobility_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_parking ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -142,7 +150,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_office ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -150,7 +159,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.service_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_theater ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -158,7 +168,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.theater_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_university ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -166,7 +177,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.university_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_accommodation ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -174,7 +186,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.hotel_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_library ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -182,7 +195,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.library_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_food ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -190,7 +204,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.restaurant_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_drink ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -198,7 +213,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.bar_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_cinema ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -206,7 +222,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.cinema_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_family ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -214,7 +231,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.family_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						"Other POI", new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -222,7 +240,8 @@ public class WidgetHelper {
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.other_poi_category)));
 
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.tab_stories ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -231,42 +250,48 @@ public class WidgetHelper {
 					}
 				}),
 
-				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.categories_story_leisure ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_leisure)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.leisure_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.categories_story_offices_and_services ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_organizations)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.office_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.categories_story_university ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_university)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.university_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.categories_story_culture ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_cultural)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.culture_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						"Other Story", new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_other)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.other_story_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.tab_places ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -274,77 +299,88 @@ public class WidgetHelper {
 					}
 				}),
 
-				new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_concert ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_concerts)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.concert_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_happyhour ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_happyhours)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.happy_hour_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_movie ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_movies)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.movies_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_party ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_parties)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parties_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_seminar ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_seminars)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.seminar_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_concert ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_movies)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.theaters_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_exhibition ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_performances)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.exhibitions_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_family ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_family)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.family_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						"Other events", new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_other)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.other_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
+						ctx.getString(R.string.categories_event_today ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
 						add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_e_todaysevents)));
 						add(new Param(PARAM_CATEGORY, ctx.getString(R.string.today_category)));
 					}
-				}), new BookmarkDescriptor(ctx.getString(R.string.map_intent_action), new ArrayList<Param>() {
+				}), new BookmarkDescriptor(ctx.getString(R.string.map_intent_action),
+						ctx.getString(R.string.categories_event_my ), new ArrayList<Param>() {
 					{
 						add(new Param(PARAM_TYPE, TYPE_DT));
 						add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
@@ -356,14 +392,16 @@ public class WidgetHelper {
 
 	public static class BookmarkDescriptor implements Parcelable {
 		public String intent;
+		public String name;
 		public List<Param> params;
 
 		public BookmarkDescriptor() {
 		}
 
-		public BookmarkDescriptor(String intent, List<Param> params) {
+		public BookmarkDescriptor(String intent, String name, List<Param> params) {
 			super();
 			this.intent = intent;
+			this.name = name;
 			this.params = params;
 		}
 
