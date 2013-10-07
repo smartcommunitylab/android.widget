@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2011 The Android Open Source Project
+<!--
+     Copyright (C) 2011 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,5 +15,20 @@
      limitations under the License.
 -->
 <resources>
+
+    <string name="app_name">android.widget</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="Fragment1">Sono il Fragment 1!</string>
+    <string name="Fragment2">Sono il Fragment 2!</string>
+    <string name="Fragment3">Sono il Fragment 3!</string>
+    <string name="Fragment4">Sono il Fragment 4!</string>
+    <string name="Fragment5">Gli elementi che hai selezionato sono:</string>
+    <string name="Fragment6">Sono il Fragment 6!</string>
+    <string name="Fragmentguida">Benvenuto! Trascina alla tua destra per iniziare!</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
     <string name="empty_view_text">This is the empty view</string>
+    <string name="widget_poi_parking">Parkings</string>
+
 </resources>
