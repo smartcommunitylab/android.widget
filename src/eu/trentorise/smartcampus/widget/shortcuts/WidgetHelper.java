@@ -13,6 +13,7 @@ import android.os.Parcelable;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
+import eu.trentorise.smartcampus.dt.custom.data.DTHelper;
 import eu.trentorise.smartcampus.jp.custom.data.SmartLine;
 import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
@@ -102,6 +103,8 @@ public class WidgetHelper implements Serializable{
 			String name = "";
 			if (line.getRoutesShorts()!=null && line.getRoutesShorts().size() > 0)
 				name = line.getRoutesShorts().get(0);
+			if ("".equals(name))
+				name=ctx.getString(RoutesHelper.getRouteDescriptorByRouteId(route).getNameResource());
 			lines.add(new BookmarkDescriptor(action, name, new ArrayList<Param>() {
 				{
 					add(new Param(PARAM_TYPE, TYPE_JP));
