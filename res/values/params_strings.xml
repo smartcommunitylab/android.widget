@@ -24,6 +24,9 @@
     <string name="cinema_category">Cinemas</string>
     <string name="family_category">Family - Organizations</string>
     <string name="other_poi_category">Other place</string>
+    
+    <!-- parking places -->
+    <string name="parking_category">Parking</string>
 
     <!-- events categories -->
     <string name="concert_category">Concerts</string>

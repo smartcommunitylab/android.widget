@@ -1,5 +1,6 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
 import eu.trentorise.smartcampus.widget.R;
 
-public class WidgetHelper {
+public class WidgetHelper implements Serializable{
 	public static Context ctx;
 	public static final String PARAM_TYPE = "TYPE";
 	public static final String PARAM_COLOR = "COLOR";
@@ -30,12 +31,14 @@ public class WidgetHelper {
 	public static final String TYPE_JP = "TYPE_JP";
 	public static final String TYPE_JP_PARKINGS = "TYPE_JP_PARKINGS";
 
-	public BookmarkDescriptor[] DTBOOKMARKS = null;
-	public BookmarkDescriptor[] JPBOOKMARKSBUS = null;
-	public BookmarkDescriptor[] JPBOOKMARKSTRAINS = null;
-	public BookmarkDescriptor[] JPBOOKMARKSPARK = null;
-	public BookmarkDescriptor[] JPBOOKMARKS = null;
-	public BookmarkDescriptor[] ALLBOOKMARKS = null;
+	public static BookmarkDescriptor[] DTBOOKMARKS = null;
+	public static BookmarkDescriptor[] JPBOOKMARKSBUS = null;
+	public static BookmarkDescriptor[] JPBOOKMARKSTRAINS = null;
+	public static BookmarkDescriptor[] JPBOOKMARKSPARK = null;
+	public static BookmarkDescriptor[] JPBOOKMARKS = null;
+	public static BookmarkDescriptor[] ALLBOOKMARKS = null;
+	//MIO CODICE
+	public static BookmarkDescriptor[] JPBOOKMARKSBUSEMI = null;
 
 	public WidgetHelper(Context ctx) {
 		this.ctx = ctx;
@@ -65,11 +68,12 @@ public class WidgetHelper {
 				RoutesHelper.AGENCYID_TRAIN_TNBDG };
 		for (int i = 0; i < agencyIds.length; i++) {
 			List<RouteDescriptor> trainLinesDescriptors = RoutesHelper.getRouteDescriptorsList(agencyIds);
-			trainLines = new ArrayList<SmartLine>();
+			trainLines = new ArrayList<SmartLine>();	
 			for (RouteDescriptor route : trainLinesDescriptors) {
 				trainLines.add(new SmartLine(null, route.getAgencyId(), 0, null, null,
 						Arrays.asList(route.getRouteId())));
 			}
+			
 			// trainLines = RoutesHelper.getSmartLines(ctx, agencyIds[i]);
 
 			JPBOOKMARKSTRAINS = initjpbookmarklines(ctx.getString(R.string.real_time_info_train_intent_action),
@@ -96,7 +100,7 @@ public class WidgetHelper {
 		for (final SmartLine line : busLines) {
 			
 			String name = "";
-			if (line.getRoutesShorts().size() > 0)
+			if (line.getRoutesShorts()!=null && line.getRoutesShorts().size() > 0)
 				name = line.getRoutesShorts().get(0);
 			lines.add(new BookmarkDescriptor(action, name, new ArrayList<Param>() {
 				{
@@ -114,6 +118,152 @@ public class WidgetHelper {
 
 	private void initDTBookmarks() {
 		DTBOOKMARKS = new BookmarkDescriptor[] {
+				// bookmark di prova parcheggi
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_sseverino), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_gpiazzafiera), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_autorimessaeuropa), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_povo), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_gtorreverde), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_autosilobuonconsiglio), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_gcentroeuropa), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_pcte), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_psit), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_gduomo), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_ptangenzialepiedicastello), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_viaasiago), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_campoconi), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_zuffo), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_ghiaie), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
+						ctx.getString(R.string.categories_parking_palazonda), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.parking_category)));
+
+							}
+						}),
+						//fine bookmark di prova parcheggi
 				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
 						ctx.getString(R.string.tab_places), new ArrayList<Param>() {
 							{
@@ -459,6 +609,14 @@ public class WidgetHelper {
 			this.params = params;
 		}
 
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
 	}
 
 	public static class Param implements Parcelable {
@@ -482,6 +640,14 @@ public class WidgetHelper {
 		public void writeToParcel(Parcel dest, int flags) {
 
 		}
+		
+		public String getName() {
+			return name;
+		}
+		
+		public String getValue() {
+			return value;
+		}
 	}
 
 	public static BookmarkDescriptor[] concat(BookmarkDescriptor[] A, BookmarkDescriptor[] B) {
@@ -491,5 +657,53 @@ public class WidgetHelper {
 		System.arraycopy(A, 0, C, 0, aLen);
 		System.arraycopy(B, 0, C, aLen, bLen);
 		return C;
+	}
+
+	public static BookmarkDescriptor[] getDTBOOKMARKS() {
+		return DTBOOKMARKS;
+	}
+
+	public void setDTBOOKMARKS(BookmarkDescriptor[] dTBOOKMARKS) {
+		DTBOOKMARKS = dTBOOKMARKS;
+	}
+
+	public static BookmarkDescriptor[] getJPBOOKMARKSBUS() {
+		return JPBOOKMARKSBUS;
+	}
+
+	public void setJPBOOKMARKSBUS(BookmarkDescriptor[] jPBOOKMARKSBUS) {
+		JPBOOKMARKSBUS = jPBOOKMARKSBUS;
+	}
+
+	public static BookmarkDescriptor[] getJPBOOKMARKSTRAINS() {
+		return JPBOOKMARKSTRAINS;
+	}
+
+	public void setJPBOOKMARKSTRAINS(BookmarkDescriptor[] jPBOOKMARKSTRAINS) {
+		JPBOOKMARKSTRAINS = jPBOOKMARKSTRAINS;
+	}
+
+	public static BookmarkDescriptor[] getJPBOOKMARKSPARK() {
+		return JPBOOKMARKSPARK;
+	}
+
+	public void setJPBOOKMARKSPARK(BookmarkDescriptor[] jPBOOKMARKSPARK) {
+		JPBOOKMARKSPARK = jPBOOKMARKSPARK;
+	}
+
+	public BookmarkDescriptor[] getJPBOOKMARKS() {
+		return JPBOOKMARKS;
+	}
+
+	public void setJPBOOKMARKS(BookmarkDescriptor[] jPBOOKMARKS) {
+		JPBOOKMARKS = jPBOOKMARKS;
+	}
+
+	public BookmarkDescriptor[] getALLBOOKMARKS() {
+		return ALLBOOKMARKS;
+	}
+
+	public void setALLBOOKMARKS(BookmarkDescriptor[] aLLBOOKMARKS) {
+		ALLBOOKMARKS = aLLBOOKMARKS;
 	}
 }

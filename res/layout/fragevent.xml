@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
    android:layout_width="fill_parent"
    android:layout_height="fill_parent"
-   android:orientation="vertical" >
+   android:orientation="vertical">
 
     <ListView
-       android:id="@+id/fragpoievsto"
+       android:id="@+id/fragevent"
        android:layout_width="fill_parent"
        android:layout_height="fill_parent"
        android:paddingTop="20sp" >

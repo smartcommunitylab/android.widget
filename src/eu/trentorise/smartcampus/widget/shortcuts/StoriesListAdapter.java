@@ -16,24 +16,25 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ObjectListAdapter extends ArrayAdapter{
+public class StoriesListAdapter extends ArrayAdapter{
 
 
 	private int resource;
     private LayoutInflater inflater;
     private Context context;
     //lista di bookmarks    
+    //private ArrayList <BookmarkDescriptor> bklist;
     private List <BookmarkDescriptor> bklist;
-    boolean[] checkBoxState;
+    public boolean[] checkBoxStateStories;
     
-    public ObjectListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean[] check) {
+    public StoriesListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean[] check) {
 
         super(ctx, resourceId, objects);
         resource = resourceId;
         inflater = LayoutInflater.from(ctx);
         context=ctx;
         bklist=objects;
-        checkBoxState= check;   
+        checkBoxStateStories= check;   
     }
     
 	
@@ -60,26 +61,25 @@ public class ObjectListAdapter extends ArrayAdapter{
     	convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
     	
     	name = (TextView)convertView.findViewById(R.id.name);
-    	checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);
+    	checkBox=(CheckBox)convertView.findViewById(R.id.checkBox);
     	
     	
     	name.setText(bklist.get(position).getName().toString());
     	
     	
-    	checkBox.setChecked(checkBoxState[position]);
+    	checkBox.setChecked(checkBoxStateStories[position]);
     	
     	checkBox.setOnClickListener(new View.OnClickListener() {
     	     
     		   public void onClick(View v) {
     		    if(((CheckBox)v).isChecked())
-    		     checkBoxState[position]=true;
+    		     checkBoxStateStories[position]=true;
     		    else
-    		     checkBoxState[position]=false;   
+    		     checkBoxStateStories[position]=false;   
     		    }
     		   });
     	
+    	return convertView;
     	
-        return convertView;
     }
-	
 }

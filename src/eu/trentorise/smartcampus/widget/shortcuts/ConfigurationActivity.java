@@ -1,5 +1,6 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 import org.json.JSONArray;
@@ -27,14 +28,14 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 
 import com.actionbarsherlock.view.MenuItem;
-import eu.trentorise.*;
 
+import eu.trentorise.*;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 
 public class ConfigurationActivity extends SherlockFragmentActivity {
 	int mAppWidgetId;
-
+	private WidgetHelper helper ;
 	private int widgetID;
     Button AddWidget;
     
@@ -46,14 +47,18 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	String[] title;
 	String[] subtitle;
 	int[] icon;
-	Fragment fragment1 = new Fragment1();
-	Fragment fragment2 = new Fragment2();
-	Fragment fragment3 = new Fragment3();
-	Fragment fragment4 = new Fragment4();
-	Fragment fragment5 = new Fragment5();
-	Fragment fragment6 = new Fragment6();
-	Fragment fragmentguida = new FragmentGuida();
-	Fragment fragpoievsto = new FragPoiEvSto();
+	
+	FragITR fragitr = new FragITR();
+	FragResume fragresume = new FragResume();
+	Fragment6 fragment6 = new Fragment6();
+	FragmentGuida fragmentguida = new FragmentGuida();
+	FragPoi fragpoi = new FragPoi();
+	FragEvent fragevent = new FragEvent();
+	FragStories fragstories = new FragStories();
+	
+
+
+	
 	
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -63,6 +68,9 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 		super.onStart();
 	    //INIZIO PARTE MIA
         
+		
+		
+		
 	     // Get the Title
 			mTitle = mDrawerTitle = getTitle();
 
@@ -142,6 +150,12 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 
 	        // Set the view layout resource to use.
 	        setContentView(R.layout.drawer_main);
+	        
+	        //Setto il fragment iniziale
+	        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+	        ft.replace(R.id.content_frame, fragmentguida);
+	        ft.commit();
+	        
 	        /*
 	        // Find the EditText
 	        AddWidget = (Button)findViewById(R.id.vai);
@@ -149,8 +163,17 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	        // Bind the action for the save button.
 	        findViewById(R.id.vai).setOnClickListener(mOnClickListener);
 	         */
-	    
+	        helper =  new WidgetHelper(this);
 		}
+	   
+	   
+	   @Override
+	public void onAttachFragment(android.app.Fragment fragment) {
+		// TODO Auto-generated method stub
+		super.onAttachFragment(fragment);
+		
+		setContentView(R.layout.fragmentguida);
+	}
 
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
@@ -183,26 +206,29 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 			// Locate Position
 			switch (position) {
 			case 0:
-				ft.replace(R.id.content_frame, fragpoievsto);
+				ft.replace(R.id.content_frame, fragpoi);
 				break;
 			case 1:
-				ft.replace(R.id.content_frame, fragpoievsto);
+				ft.replace(R.id.content_frame, fragevent);
 				break;
 			case 2:
-				ft.replace(R.id.content_frame, fragpoievsto);
+				ft.replace(R.id.content_frame, fragstories);
 				break;
 			case 3:
-				ft.replace(R.id.content_frame, fragment4);
+				ft.replace(R.id.content_frame, fragitr);
 				break;
 			case 4:
-				ft.replace(R.id.content_frame, fragment5);
+				ft.replace(R.id.content_frame, fragresume);
 				break;
 			case 5:
-				ft.replace(R.id.content_frame, fragment6);
+				ft.commit();
+				// ft.replace(R.id.content_frame, fragment6);
 				break;
 			default:
 				ft.replace(R.id.content_frame, fragmentguida);
 			}
+
+			
 			ft.commit();
 			mDrawerList.setItemChecked(position, true);
 

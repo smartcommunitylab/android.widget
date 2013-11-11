@@ -4,12 +4,21 @@
     android:layout_height="match_parent" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="- Disponibilità Parcheggi -" />
+
+    <ListView
+        android:id="@+id/fragparcheggi"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/Fragment5"
-        android:textSize="18dp" />
+        android:paddingTop="50sp" >
+    </ListView>
 
 </RelativeLayout>

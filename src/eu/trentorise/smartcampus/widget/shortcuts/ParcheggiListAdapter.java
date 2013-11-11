@@ -16,24 +16,25 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ObjectListAdapter extends ArrayAdapter{
+public class ParcheggiListAdapter extends ArrayAdapter{
 
 
 	private int resource;
     private LayoutInflater inflater;
     private Context context;
     //lista di bookmarks    
+    //private ArrayList <BookmarkDescriptor> bklist;
     private List <BookmarkDescriptor> bklist;
-    boolean[] checkBoxState;
+    boolean[] checkBoxStateParcheggi;
     
-    public ObjectListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean[] check) {
+    public ParcheggiListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean[] check) {
 
         super(ctx, resourceId, objects);
         resource = resourceId;
         inflater = LayoutInflater.from(ctx);
         context=ctx;
         bklist=objects;
-        checkBoxState= check;   
+        checkBoxStateParcheggi= check;   
     }
     
 	
@@ -66,20 +67,19 @@ public class ObjectListAdapter extends ArrayAdapter{
     	name.setText(bklist.get(position).getName().toString());
     	
     	
-    	checkBox.setChecked(checkBoxState[position]);
+    	checkBox.setChecked(checkBoxStateParcheggi[position]);
     	
     	checkBox.setOnClickListener(new View.OnClickListener() {
     	     
     		   public void onClick(View v) {
     		    if(((CheckBox)v).isChecked())
-    		     checkBoxState[position]=true;
+    		     checkBoxStateParcheggi[position]=true;
     		    else
-    		     checkBoxState[position]=false;   
+    		     checkBoxStateParcheggi[position]=false;   
     		    }
     		   });
     	
+    	return convertView;
     	
-        return convertView;
     }
-	
 }

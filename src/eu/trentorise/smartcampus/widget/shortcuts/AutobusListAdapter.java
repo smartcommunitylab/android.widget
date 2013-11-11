@@ -16,24 +16,30 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ObjectListAdapter extends ArrayAdapter{
+public class AutobusListAdapter extends ArrayAdapter{
 
 
 	private int resource;
     private LayoutInflater inflater;
     private Context context;
     //lista di bookmarks    
+    //private ArrayList <BookmarkDescriptor> bklist;
     private List <BookmarkDescriptor> bklist;
-    boolean[] checkBoxState;
+    private List <String> bkdirectionlist;
+    boolean[] checkBoxStateAutobus;
     
-    public ObjectListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean[] check) {
+    
+    
+    public AutobusListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, List<String> direction, boolean[] check) {
 
         super(ctx, resourceId, objects);
         resource = resourceId;
         inflater = LayoutInflater.from(ctx);
-        context=ctx;
-        bklist=objects;
-        checkBoxState= check;   
+        context = ctx;
+        bklist = objects;
+        bkdirectionlist = direction;
+        checkBoxStateAutobus = check;  
+        
     }
     
 	
@@ -51,35 +57,35 @@ public class ObjectListAdapter extends ArrayAdapter{
     public View getView ( final int position, View convertView, ViewGroup parent ) {
 
     	TextView name;
+    	TextView direction;
     	ImageView image;
     	CheckBox checkBox;
-    	
-    
     	
     	
     	convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
     	
+    	
     	name = (TextView)convertView.findViewById(R.id.name);
+    	direction= (TextView)convertView.findViewById(R.id.direction);
     	checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);
     	
     	
     	name.setText(bklist.get(position).getName().toString());
+    	direction.setText(bkdirectionlist.get(position));
     	
-    	
-    	checkBox.setChecked(checkBoxState[position]);
+    	checkBox.setChecked(checkBoxStateAutobus[position]);
     	
     	checkBox.setOnClickListener(new View.OnClickListener() {
     	     
     		   public void onClick(View v) {
     		    if(((CheckBox)v).isChecked())
-    		     checkBoxState[position]=true;
+    		     checkBoxStateAutobus[position]=true;
     		    else
-    		     checkBoxState[position]=false;   
+    		     checkBoxStateAutobus[position]=false;   
     		    }
     		   });
     	
+    	return convertView;
     	
-        return convertView;
     }
-	
 }

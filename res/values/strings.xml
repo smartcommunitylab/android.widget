@@ -30,4 +30,22 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="empty_view_text">This is the empty view</string>
     <string name="widget_poi_parking">Parkings</string>
+    <string name="Fragautobus">Sono il Fragment dell autobus!</string>
+    <string name="Fragtreni">Sono il Fragment dei treni!</string>
+    <string name="Fragparcheggi">Sono il Fragment dei parcheggi!</string>
+    
+    
+    <string-array name="autobus_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    
+    
+    
 </resources>
