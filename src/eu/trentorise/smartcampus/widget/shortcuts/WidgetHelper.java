@@ -98,7 +98,7 @@ public class WidgetHelper implements Serializable{
 	private BookmarkDescriptor[] initjpbookmarklines(String action, final String agencyId, List<SmartLine> busLines) {
 		List<BookmarkDescriptor> lines = new ArrayList<WidgetHelper.BookmarkDescriptor>();
 		for (final SmartLine line : busLines) {
-			
+			for (final String route : line.getRouteID()){
 			String name = "";
 			if (line.getRoutesShorts()!=null && line.getRoutesShorts().size() > 0)
 				name = line.getRoutesShorts().get(0);
@@ -108,10 +108,11 @@ public class WidgetHelper implements Serializable{
 					add(new Param(PARAM_COLOR, Integer.toString(R.color.jpappcolor)));
 					add(new Param(PARAM_RESOURCE, Integer.toString(line.getColor())));
 					add(new Param(PARAM_AGENCY_ID, agencyId));
-					add(new Param(PARAM_ROUTE_ID, line.getRouteID().get(0)));
+					add(new Param(PARAM_ROUTE_ID, route));
 
 				}
 			}));
+			}
 		}
 		return lines.toArray(new BookmarkDescriptor[lines.size()]);
 	}

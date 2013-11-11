@@ -24,7 +24,7 @@ public class FragAutobus extends SherlockFragment {
 	private ListView listViewObject;
 	private WidgetHelper widgetHelper;
 	private List<SmartLine> busLines;
-	private boolean[] checkBoxState = new boolean[32];
+	private boolean[] checkBoxState = new boolean[50]; //fisso???
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
