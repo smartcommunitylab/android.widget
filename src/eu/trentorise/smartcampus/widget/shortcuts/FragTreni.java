@@ -11,6 +11,7 @@ import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
+import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.Param;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;

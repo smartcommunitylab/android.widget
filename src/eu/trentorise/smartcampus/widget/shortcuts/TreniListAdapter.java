@@ -34,7 +34,8 @@ public class TreniListAdapter extends ArrayAdapter{
         inflater = LayoutInflater.from(ctx);
         context=ctx;
         bklist=objects;
-        checkBoxStateTreni= check;   
+        checkBoxStateTreni= check; 
+    
     }
     
 	
@@ -54,7 +55,7 @@ public class TreniListAdapter extends ArrayAdapter{
     	TextView name;
     	ImageView image;
     	CheckBox checkBox;
-    	
+  
     
     	
     	

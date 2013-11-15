@@ -8,24 +8,43 @@ import com.actionbarsherlock.app.SherlockFragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import eu.trentorise.smartcampus.dt.notifications.NotificationsSherlockFragmentDT;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 
-public class FragStories extends SherlockFragment {
+public class FragStories extends SherlockFragment{
 
 	private ListView listViewObject;
 	private WidgetHelper widgetHelper;
-	private boolean[] checkBoxState=new boolean[32];
+
+	private boolean[] checkBoxState = new boolean[5];
+	CheckBox checkBox;
+	
+	
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		checkBox=(CheckBox)getSherlockActivity().findViewById(R.id.checkBox);
+		checkBoxState=load();
+		
 	}
 
 	@Override
@@ -38,7 +57,7 @@ public class FragStories extends SherlockFragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragstories, container,
 				false);
-
+		
 		return rootView;
 	}
 
@@ -70,4 +89,16 @@ public class FragStories extends SherlockFragment {
 				R.layout.row_element, filtered_bookmarksdescriptors, checkBoxState));
 
 	}
+	
+	  public boolean[] load() {
+		  SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+	        boolean [] reChecked = new boolean[checkBoxState.length];
+	        for(Integer i = 0; i < checkBoxState.length; i++)
+	        {
+	             reChecked[i] = sharedPreferences.getBoolean(i.toString(), false);
+	        }
+	        return reChecked;
+	    }
+	
+	
 }
