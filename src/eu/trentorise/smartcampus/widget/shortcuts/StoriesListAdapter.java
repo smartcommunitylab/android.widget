@@ -8,12 +8,15 @@ import com.actionbarsherlock.app.SherlockFragment;
 import eu.trentorise.smartcampus.dt.fragments.home.EventsAdapter.ViewHolder;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,8 +42,9 @@ public class StoriesListAdapter extends ArrayAdapter implements OnCheckedChangeL
     //lista di bookmarks    
     //private ArrayList <BookmarkDescriptor> bklist;
     private List <BookmarkDescriptor> bklist;
-    public boolean[] checkBoxStateStories = new boolean[5];
-
+    public boolean[] checkBoxStateStories;
+    public boolean[] public_checkBoxStateStories = new boolean[5];
+    
     
     public StoriesListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, boolean []check) {
 
@@ -50,82 +54,56 @@ public class StoriesListAdapter extends ArrayAdapter implements OnCheckedChangeL
         context=ctx;
         bklist=objects;
         checkBoxStateStories=check;
+        
     }
-    
-   
-	
 	
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
-	
 
 	
-
 // METODO GETVIEW DOVE VADO A PRENDERE IL PARAMETRI DI BOOKMARKS
   
     @Override
     public View getView ( final int position, View convertView, ViewGroup parent ) {
     	
-    	TextView name;
-    	ImageView image;
-    	CheckBox checkBox;
-    	
-    
     	if (convertView == null) {
     		convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
     		holder= new ViewHolder();
     		holder.name = (TextView)convertView.findViewById(R.id.name);
-    		holder.checkBox=(CheckBox)convertView.findViewById(R.id.checkBox);
-    		convertView.setTag(holder);
-    	}else{
-    		holder=(ViewHolder)convertView.getTag();
-    	}
-    	
-    
-    	
-    	holder.name.setText(bklist.get(position).getName().toString());
-    	holder.checkBox.setChecked(checkBoxStateStories[position]);
-    	
-    	
-    	holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    		holder.checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-    	      
-    	      checkBoxStateStories[position] = isChecked;
-               if(checkBoxStateStories[position])
-               {
-                   holder.checkBox.setChecked(true);
-               }
-               else
-               {
-                   holder.checkBox.setChecked(false);
-               }
-         	  save(checkBoxStateStories);
-    	       }});
-    
+    		holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            
+    			@Override
+    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    				int getPosition = (Integer) buttonView.getTag();  // Here we get the position that we have set for the checkbox using setTag.
+    				bklist.get(getPosition).setSelected(buttonView.isChecked()); // Set the value of checkbox to maintain its state.
+    				checkBoxStateStories[getPosition] = isChecked;
+    				save(checkBoxStateStories);
+    			}
+    		});
+  		
+    		
+    		convertView.setTag(holder);
+    		convertView.setTag(R.id.name, holder.name);
+    		convertView.setTag(R.id.checkBox, holder.checkBox);
+    		
+        	} else {
+        		
+        		holder = (ViewHolder) convertView.getTag();
+        	}
     	
-    	//boolean item[]=load();
-    	//holder.checkBox.setChecked(item[position]);
-    	
-    	/*
-    	checkBox.setOnClickListener(new View.OnClickListener() {
-    	     
-    		   public void onClick(View v) {
-    		    if(((CheckBox)v).isChecked())
-    		     checkBoxStateStories[position]=true;
-    		    else
-    		     checkBoxStateStories[position]=false;   
-    		    }
-    		   });
-    	*/
+    		holder.checkBox.setTag(position); // This line is important.
+
+    		holder.name.setText(bklist.get(position).getName());
+    		holder.checkBox.setChecked(checkBoxStateStories[position]);
+   
     	return convertView;
     	
     }
 
-    
     
     static class ViewHolder {
         TextView name;
@@ -139,14 +117,12 @@ public class StoriesListAdapter extends ArrayAdapter implements OnCheckedChangeL
 	}
 
 	private void save(final boolean[] isChecked) {
-		SharedPreferences sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+		SharedPreferences sharedPreferences = context.getSharedPreferences("sharedPrefsStories", Context.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = sharedPreferences.edit();
 	    for(Integer i=0;i<isChecked.length;i++)
-	     {
+	    {
 	         editor.putBoolean(i.toString(), isChecked[i]);
-	     }
+	    }
 	    editor.commit();
 	    }
-	
-
-}
+	}

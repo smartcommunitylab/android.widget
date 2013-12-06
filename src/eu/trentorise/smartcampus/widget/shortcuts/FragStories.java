@@ -91,7 +91,7 @@ public class FragStories extends SherlockFragment{
 	}
 	
 	  public boolean[] load() {
-		  SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+		  SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences("sharedPrefsStories", Context.MODE_PRIVATE);
 	        boolean [] reChecked = new boolean[checkBoxState.length];
 	        for(Integer i = 0; i < checkBoxState.length; i++)
 	        {

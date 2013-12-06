@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -46,6 +47,7 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	MenuListAdapter mMenuAdapter;
 	String[] title;
 	String[] subtitle;
+	Context context;
 	int[] icon;
 	
 	FragITR fragitr = new FragITR();
@@ -56,21 +58,18 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 	FragEvent fragevent = new FragEvent();
 	FragStories fragstories = new FragStories();
 	
-
-
-	
-	
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
+	
+
     
 	@Override
 	protected void onStart() {
 		super.onStart();
 	    //INIZIO PARTE MIA
-        
 		
-		
-		
+		initSharedPreference();
+
 	     // Get the Title
 			mTitle = mDrawerTitle = getTitle();
 
@@ -258,6 +257,22 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
 			getSupportActionBar().setTitle(mTitle);
 		}
 		
+		public void initSharedPreference(){
+			
+			SharedPreferences sharedPreferencesParcheggi = getSharedPreferences("sharedPrefsParcheggi", Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferencesStories = getSharedPreferences("sharedPrefsStories", Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferencesPOI = getSharedPreferences("sharedPrefsPOI", Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferencesAutobus = getSharedPreferences("sharedPrefsAutobus", Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferencesTreni = getSharedPreferences("sharedPrefsTreni", Context.MODE_PRIVATE);
+			SharedPreferences sharedPreferencesEventi = getSharedPreferences("sharedPrefsEvents", Context.MODE_PRIVATE);
+			
+			sharedPreferencesParcheggi.edit().clear().commit();
+			sharedPreferencesStories.edit().clear().commit();
+			sharedPreferencesPOI.edit().clear().commit();
+			sharedPreferencesAutobus.edit().clear().commit();
+			sharedPreferencesTreni.edit().clear().commit();
+			sharedPreferencesEventi.edit().clear().commit();
+		}
 		
 		
 		// {

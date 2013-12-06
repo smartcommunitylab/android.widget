@@ -576,6 +576,7 @@ public class WidgetHelper implements Serializable{
 		public String intent;
 		public String name;
 		public List<Param> params;
+		private boolean selected;
 
 		public BookmarkDescriptor() {
 		}
@@ -621,6 +622,15 @@ public class WidgetHelper implements Serializable{
 			this.name = name;
 		}
 
+		public void setSelected(boolean selected) {
+			// TODO Auto-generated method stub
+			this.selected = selected;
+		}
+
+		public boolean isSelected() {
+		     return selected;
+		}
+		
 	}
 
 	public static class Param implements Parcelable {

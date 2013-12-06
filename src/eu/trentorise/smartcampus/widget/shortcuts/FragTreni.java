@@ -13,6 +13,8 @@ import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.Param;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ public class FragTreni extends SherlockFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		checkBoxState=load();
 	}
 
 	@Override
@@ -74,5 +77,17 @@ public class FragTreni extends SherlockFragment {
 				R.layout.row_element, filtered_bookmarksdescriptors, checkBoxState));
 
 	}
+	
+	
+	  public boolean[] load() {
+		  SharedPreferences sharedPreferences = getSherlockActivity().getSharedPreferences("sharedPrefsTreni", Context.MODE_PRIVATE);
+	        boolean[] reChecked = new boolean[checkBoxState.length];
+	        for(Integer i = 0; i < checkBoxState.length; i++)
+	        {
+	             reChecked[i] = sharedPreferences.getBoolean(i.toString(), false);
+	        }
+	        return reChecked;
+	    }
+	    
 }
 	

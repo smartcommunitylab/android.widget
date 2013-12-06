@@ -16,9 +16,19 @@
         android:id="@+id/fragresume"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:paddingTop="50sp" >
+        android:layout_above="@+id/confermascelte"
+        android:layout_below="@+id/textView1"
+        android:paddingTop="60sp" >
+
     </ListView>
+
+    <Button
+        android:id="@+id/confermascelte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Conferma le tue scelte!" />
 
 </RelativeLayout>
