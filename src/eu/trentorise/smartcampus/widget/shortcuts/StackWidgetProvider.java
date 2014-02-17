@@ -49,12 +49,13 @@ public class StackWidgetProvider extends AppWidgetProvider {
 	public void onReceive(Context context, Intent intent) {
 		AppWidgetManager mgr = AppWidgetManager.getInstance(context);
 		if (intent.getAction().equals(INTENT_ACTION)) {
-			// int appWidgetId =
-			// intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-			// AppWidgetManager.INVALID_APPWIDGET_ID);
-			// int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-			// Toast.makeText(context, "Touched view " + viewIndex,
-			// Toast.LENGTH_SHORT).show();
+			//commentate prima
+			int appWidgetId =
+			 intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+			 AppWidgetManager.INVALID_APPWIDGET_ID);
+			 int viewIndex = intent.getIntExtra(EXTRA_INTENT, 0);		//era EXTRA_ITEM
+			 Toast.makeText(context, "Touched view " + viewIndex,
+			 Toast.LENGTH_SHORT).show();
 
 			String action = intent.getExtras().getString(EXTRA_INTENT);
 			Intent newintent = new Intent(action);
@@ -103,7 +104,14 @@ public class StackWidgetProvider extends AppWidgetProvider {
 			rv.setPendingIntentTemplate(R.id.stack_view, toastPendingIntent);
 
 			appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
+			
 		}
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 	}
+	
+	 public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, int [] appWidgetIds) {
+	        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+	        appWidgetManager.updateAppWidget(appWidgetIds, views);
+	    }
+	
 }

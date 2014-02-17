@@ -146,7 +146,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {
 			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
 			// set the widgetbutton
-			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {
+			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {	//controllare con gli input da config activity?
 				String type = myDescriptor.params.get(0).value;
 				if (WidgetHelper.TYPE_DT.equals(type)) {
 					// dt -> put icons and hide text
@@ -167,7 +167,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 80);
 
 						rv.setTextViewText(R.id.text_widget_item, RoutesHelper.getShortNameByRouteIdAndAgencyID(
-								myDescriptor.params.get(4).value, myDescriptor.params.get(3).value));
+								myDescriptor.params.get(4).value, myDescriptor.params.get(3).value));	//4,3
 						rv.setTextColor(R.id.text_widget_item,Integer.parseInt(myDescriptor.params.get(2).value));//rv.setInt(R.id.text_widget_item, "setBackgroundColor",
 								//Integer.parseInt(myDescriptor.params.get(2).value));
 						rv.setInt(R.id.text_widget_item, "setBackgroundResource", R.drawable.rounded_border_jp);

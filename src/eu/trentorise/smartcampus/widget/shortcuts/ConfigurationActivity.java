@@ -58,10 +58,7 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
         FragPoi fragpoi = new FragPoi();
         FragEvent fragevent = new FragEvent();
         FragStories fragstories = new FragStories();
-        
-
-
-        
+                
         
         private CharSequence mDrawerTitle;
         private CharSequence mTitle;
@@ -70,8 +67,8 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
         protected void onStart() {
                 super.onStart();
          //INIZIO PARTE MIA
-        
-                
+              
+                initSharedPreference();		//Inizializzo preferenze
                 
                 
          // Get the Title
@@ -279,6 +276,7 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
         			SharedPreferences sharedPreferencesAutobus = getSharedPreferences("sharedPrefsAutobus", Context.MODE_PRIVATE);
         			SharedPreferences sharedPreferencesTreni = getSharedPreferences("sharedPrefsTreni", Context.MODE_PRIVATE);
         			SharedPreferences sharedPreferencesEventi = getSharedPreferences("sharedPrefsEvents", Context.MODE_PRIVATE);
+        			//SharedPreferences sharedPreferencesTot = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         			
         			sharedPreferencesParcheggi.edit().clear().commit();
         			sharedPreferencesStories.edit().clear().commit();
@@ -286,6 +284,7 @@ public class ConfigurationActivity extends SherlockFragmentActivity {
         			sharedPreferencesAutobus.edit().clear().commit();
         			sharedPreferencesTreni.edit().clear().commit();
         			sharedPreferencesEventi.edit().clear().commit();
+        			//sharedPreferencesTot.edit().clear().commit();
         		}
         		
         		public void prova() {
