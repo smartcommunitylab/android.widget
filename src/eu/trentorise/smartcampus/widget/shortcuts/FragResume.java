@@ -150,12 +150,20 @@ public class FragResume extends SherlockFragment {
 							.show();
 				}
 
+				final AppWidgetManager appWidgetManager = AppWidgetManager
+						.getInstance(context);
+				
+				StackWidgetProvider.updateAppWidget(context,
+						appWidgetManager, iDChecked);
+				
+				
+				
 				/*
 				 * // Push widget update to surface with newly set prefix
 				 * AppWidgetManager appWidgetManager =
 				 * AppWidgetManager.getInstance(context);
 				 */
-
+/*
 				// Instantiating the class RemoteViews with widget_layout
 				RemoteViews views = new RemoteViews(ctx.getPackageName(),
 						R.layout.widget_layout);
@@ -163,7 +171,7 @@ public class FragResume extends SherlockFragment {
 				// Tell the AppWidgetManager to perform an update on the app
 				// widget
 				SmartCampusShortCuts.updateAppWidget(mAppWidgetId, views);
-
+*/
 				/*
 				 * SmartCampusShortCuts.updateAppWidget(context,
 				 * appWidgetManager, mAppWidgetId, null);
@@ -171,48 +179,24 @@ public class FragResume extends SherlockFragment {
 
 				// Make sure we pass back the original appWidgetId
 				WidgetHelper helper = new WidgetHelper(context);
-				String[] DTPREFERENCES;
-				String[] JPPREFERENCES;
-
-				/* Load prefix values */
-				/*
-				 * DTPREFERENCES = new String[2]; DTPREFERENCES[0]
-				 * =JSONSharedPreferences.convertToJSON(helper.DTBOOKMARKS[0]);
-				 * DTPREFERENCES[1]
-				 * =JSONSharedPreferences.convertToJSON(helper.DTBOOKMARKS[1]);
-				 * JPPREFERENCES = new String[4]; JPPREFERENCES[0]
-				 * =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[0]);
-				 * JPPREFERENCES[1]
-				 * =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[1]);
-				 * JPPREFERENCES[2]
-				 * =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[2]);
-				 * JPPREFERENCES[3]
-				 * =JSONSharedPreferences.convertToJSON(helper.JPBOOKMARKS[3]);
-				 * JSONSharedPreferences.saveJSONArray(context, "WIDGET",
-				 * "DTPREFERENCES",new JSONArray(Arrays.asList(DTPREFERENCES)));
-				 * JSONSharedPreferences.saveJSONArray(context, "WIDGET",
-				 * "JPPREFERENCES",new JSONArray(Arrays.asList(JPPREFERENCES)));
-				 */
-
-				Toast.makeText(getSherlockActivity().getApplicationContext(),
-						"this is my Toast message!!! =)", Toast.LENGTH_LONG)
-						.show();
+				
+				String[] ALLPREFERENCES;
+	
+				ALLPREFERENCES = new String[iDChecked.length];
+				
+				for (int i=0; i<iDChecked.length; i++){
+					ALLPREFERENCES[iDChecked[i]] = JSONSharedPreferences.convertToJSON(helper.ALLBOOKMARKS[iDChecked[i]]); //DTBOOKMARKS
+				}
+				
+				JSONSharedPreferences.saveJSONArray(context, "WIDGET","ALLPREFERENCES", new JSONArray(Arrays.asList(ALLPREFERENCES)));
 
 				final Intent resultValue = new Intent();
 
-				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
-						mAppWidgetId);
+				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
 
-				resultValue.putExtra("final_result", iDChecked);
+				//resultValue.putExtra("final_result", iDChecked);
 
-				getSherlockActivity().setResult(
-						SherlockFragmentActivity.RESULT_OK, resultValue);
-
-				final AppWidgetManager appWidgetManager = AppWidgetManager
-						.getInstance(getSherlockActivity()); // corretto?!
-
-				StackWidgetProvider.updateAppWidget(getSherlockActivity(),
-						appWidgetManager, iDChecked);
+				getSherlockActivity().setResult(SherlockFragmentActivity.RESULT_OK, resultValue);
 
 				getSherlockActivity().finish();
 

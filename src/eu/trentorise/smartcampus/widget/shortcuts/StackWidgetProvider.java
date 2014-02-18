@@ -86,7 +86,7 @@ public class StackWidgetProvider extends AppWidgetProvider {
 			// The empty view is displayed when the collection has no items. It
 			// should be a sibling
 			// of the collection view.
-//			rv.setEmptyView(R.id.stack_view, R.id.empty_view);
+			// rv.setEmptyView(R.id.stack_view, R.id.empty_view);
 
 			// Here we setup the a pending intent template. Individuals items of
 			// a collection

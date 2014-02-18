@@ -49,6 +49,8 @@ public class WidgetHelper implements Serializable{
 	private void initBookmarks() {
 		initDTBookmarks();
 		initJPBookmarks();
+		ALLBOOKMARKS= new BookmarkDescriptor[JPBOOKMARKS.length+DTBOOKMARKS.length];
+		ALLBOOKMARKS = concat(JPBOOKMARKS,DTBOOKMARKS);	//concateno i bookmarks
 	}
 
 	private void initJPBookmarks() {
@@ -570,6 +572,8 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.my_category)));
 							}
 						}) };
+		
+		
 	}
 
 	public static class BookmarkDescriptor implements Parcelable {

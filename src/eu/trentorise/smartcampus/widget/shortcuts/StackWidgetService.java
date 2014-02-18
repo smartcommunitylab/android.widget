@@ -57,8 +57,8 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 	private List<WidgetItem> mWidgetItems = new ArrayList<WidgetItem>();
 	private Context mContext;
 	private int mAppWidgetId;
-	BookmarkDescriptor[] DTPREFERENCES;
-	BookmarkDescriptor[] JPPREFERENCES;
+	//BookmarkDescriptor[] DTPREFERENCES;
+	//BookmarkDescriptor[] JPPREFERENCES;
 	BookmarkDescriptor[] ALLPREFERENCES;
 
 	private WidgetHelper helper;
@@ -70,14 +70,14 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
 	public void onCreate() {
 		try {
-			JSONArray DTjsonArray = JSONSharedPreferences.loadJSONArray(mContext, "WIDGET", "DTPREFERENCES");
+			JSONArray ALLjsonArray = JSONSharedPreferences.loadJSONArray(mContext, "WIDGET", "ALLPREFERENCES");
 			List<BookmarkDescriptor> list = new ArrayList<BookmarkDescriptor>();
-			for (int k = 0; k < DTjsonArray.length(); k++) {
-				list.add(JSONSharedPreferences.fromJson(DTjsonArray.get(k).toString()));
+			for (int k = 0; k < ALLjsonArray.length(); k++) {
+				list.add(JSONSharedPreferences.fromJson(ALLjsonArray.get(k).toString()));
 			}
-			DTPREFERENCES = new BookmarkDescriptor[list.size()];
-			list.toArray(DTPREFERENCES);
-
+			ALLPREFERENCES = new BookmarkDescriptor[list.size()];
+			list.toArray(ALLPREFERENCES);
+/*
 			JSONArray JPjsonArray = JSONSharedPreferences.loadJSONArray(mContext, "WIDGET", "JPPREFERENCES");
 			list = new ArrayList<BookmarkDescriptor>();
 			for (int k = 0; k < JPjsonArray.length(); k++) {
@@ -85,11 +85,14 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 			}
 			JPPREFERENCES = new BookmarkDescriptor[list.size()];
 			list.toArray(JPPREFERENCES);
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		helper = new WidgetHelper(mContext);
-		ALLPREFERENCES = WidgetHelper.concat(DTPREFERENCES, JPPREFERENCES);
+		
+		// ALLPREFERENCES = WidgetHelper.concat(DTPREFERENCES, JPPREFERENCES);
+		
 		// In onCreate() you setup any connections / cursors to your data
 		// source. Heavy lifting,
 		// for example downloading or creating content etc, should be deferred
