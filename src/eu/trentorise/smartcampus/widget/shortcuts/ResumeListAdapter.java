@@ -27,7 +27,7 @@ public class ResumeListAdapter extends ArrayAdapter{
     private final List <BookmarkDescriptor> bklist;
     private final List <String> bkdirectionlist;
     //mi contiene tutti i cliccati o no, potrei passarla al widget
-    public boolean[] checkBoxStateResume = new boolean [100];
+    public boolean[] checkBoxStateResume = new boolean [150];
     ViewHolder holder;
     
     public ResumeListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, List<String> direction, boolean[] check) {
@@ -71,9 +71,10 @@ public class ResumeListAdapter extends ArrayAdapter{
     				int getPosition = (Integer) buttonView.getTag();  // Here we get the position that we have set for the checkbox using setTag.
     				bklist.get(getPosition).setSelected(buttonView.isChecked()); // Set the value of checkbox to maintain its state.
     				  
-    				checkBoxStateResume[position] = isChecked;  
+    				checkBoxStateResume[getPosition] = isChecked;  
     				save(checkBoxStateResume);
-    	               
+    				System.out.println("POSITION:" + position );
+    				System.out.println("POSITION____GETPOS:" + getPosition );  
     			}
     		});
     	
@@ -106,7 +107,7 @@ public class ResumeListAdapter extends ArrayAdapter{
         protected CheckBox checkBox;
     }
     
-	private void save(final boolean[] isChecked) {
+	private void save(boolean[] isChecked) {
 		SharedPreferences sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = sharedPreferences.edit();
 	    for(Integer i=0;i<isChecked.length;i++)

@@ -99,8 +99,9 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// or getViewAt(). Taking more than 20 seconds in this call will result
 		// in an ANR.
 		
+		final int countPreferences = ALLPREFERENCES.length;
 		
-		for (int i = 0; i < mCount; i++) {
+		for (int i = 0; i < countPreferences; i++) {						//mCount
 			mWidgetItems.add(new WidgetItem(i + "!"));
 		}
 
@@ -150,8 +151,14 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// Next, we set a fill-intent which will be used to fill-in the
 		// pending intent template
 		// which is set on the collection view in StackWidgetProvider.
-		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {		//ALLPREFERENCE è dimensionato come le preferenze selezionate
+				
+		
+			
+				
+		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {		//ALLPREFERENCES è dimensionato come le preferenze selezionate
 			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
+			
+			
 			// set the widgetbutton
 			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {	//controllare con gli input da config activity?
 				String type = myDescriptor.params.get(0).value;

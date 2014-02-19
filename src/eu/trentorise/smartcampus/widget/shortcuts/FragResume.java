@@ -89,7 +89,7 @@ public class FragResume extends SherlockFragment {
 	public void onStart() {
 		super.onStart();
 		// aggiunto
-	//	load();
+		// load();
 	}
 	
 	@Override
