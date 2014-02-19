@@ -1,30 +1,18 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.actionbarsherlock.app.SherlockFragment;
-
 import eu.trentorise.smartcampus.widget.R;
-import eu.trentorise.smartcampus.widget.shortcuts.ResumeListAdapter.ViewHolder;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -65,7 +53,7 @@ public class EventListAdapter extends ArrayAdapter {
 
     	
     	if (convertView == null) {
-    		convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
+    		convertView = inflater.inflate( R.layout.row_element, parent, false );
     		holder= new ViewHolder();
     		holder.name = (TextView)convertView.findViewById(R.id.name);
     		holder.checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);

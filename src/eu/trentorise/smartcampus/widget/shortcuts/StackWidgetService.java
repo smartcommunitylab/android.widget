@@ -30,15 +30,11 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
-import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
@@ -53,7 +49,7 @@ public class StackWidgetService extends RemoteViewsService {
 }
 
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-	private static final int mCount = 6;
+	private static int mCount = 4;
 	private List<WidgetItem> mWidgetItems = new ArrayList<WidgetItem>();
 	private Context mContext;
 	private int mAppWidgetId;
@@ -68,6 +64,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 	}
 
+	@Override
 	public void onCreate() {
 		try {
 			JSONArray ALLjsonArray = JSONSharedPreferences.loadJSONArray(mContext, "WIDGET", "ALLPREFERENCES");
@@ -75,8 +72,10 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 			for (int k = 0; k < ALLjsonArray.length(); k++) {
 				list.add(JSONSharedPreferences.fromJson(ALLjsonArray.get(k).toString()));
 			}
+			
 			ALLPREFERENCES = new BookmarkDescriptor[list.size()];
 			list.toArray(ALLPREFERENCES);
+			
 /*
 			JSONArray JPjsonArray = JSONSharedPreferences.loadJSONArray(mContext, "WIDGET", "JPPREFERENCES");
 			list = new ArrayList<BookmarkDescriptor>();
@@ -99,6 +98,8 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// to onDataSetChanged()
 		// or getViewAt(). Taking more than 20 seconds in this call will result
 		// in an ANR.
+		
+		
 		for (int i = 0; i < mCount; i++) {
 			mWidgetItems.add(new WidgetItem(i + "!"));
 		}
@@ -117,6 +118,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
 	}
 
+	@Override
 	public void onDestroy() {
 		// In onDestroy() you should tear down anything that was setup for your
 		// data source,
@@ -124,10 +126,12 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		mWidgetItems.clear();
 	}
 
+	@Override
 	public int getCount() {
 		return mCount;
 	}
 
+	@Override
 	public RemoteViews getViewAt(int position) {
 		// position will always range from 0 to getCount() - 1.
 
@@ -146,7 +150,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// Next, we set a fill-intent which will be used to fill-in the
 		// pending intent template
 		// which is set on the collection view in StackWidgetProvider.
-		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {
+		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {		//ALLPREFERENCE è dimensionato come le preferenze selezionate
 			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
 			// set the widgetbutton
 			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {	//controllare con gli input da config activity?
@@ -215,6 +219,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		return rv;
 	}
 
+	@Override
 	public RemoteViews getLoadingView() {
 		// You can create a custom loading view (for instance when getViewAt()
 		// is slow.) If you
@@ -222,18 +227,22 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		return null;
 	}
 
+	@Override
 	public int getViewTypeCount() {
 		return 1;
 	}
 
+	@Override
 	public long getItemId(int position) {
 		return position;
 	}
 
+	@Override
 	public boolean hasStableIds() {
 		return true;
 	}
 
+	@Override
 	public void onDataSetChanged() {
 		// This is triggered when you call AppWidgetManager
 		// notifyAppWidgetViewDataChanged

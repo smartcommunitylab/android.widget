@@ -1,12 +1,10 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +55,7 @@ public class ObjectListAdapter extends ArrayAdapter{
     
     	
     	
-    	convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
+    	convertView = inflater.inflate( R.layout.row_element, parent, false );
     	
     	name = (TextView)convertView.findViewById(R.id.name);
     	checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);
@@ -70,7 +68,8 @@ public class ObjectListAdapter extends ArrayAdapter{
     	
     	checkBox.setOnClickListener(new View.OnClickListener() {
     	     
-    		   public void onClick(View v) {
+    		   @Override
+			public void onClick(View v) {
     		    if(((CheckBox)v).isChecked())
     		     checkBoxState[position]=true;
     		    else

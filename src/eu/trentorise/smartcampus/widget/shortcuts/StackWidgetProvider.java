@@ -109,7 +109,7 @@ public class StackWidgetProvider extends AppWidgetProvider {
 		super.onUpdate(context, appWidgetManager, appWidgetIds);
 	}
 	
-	 public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, int [] appWidgetIds) {
+	 public static void updateAppWidget(final Context context, final AppWidgetManager appWidgetManager, int[] appWidgetIds) {    //int[]
 	        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 	        appWidgetManager.updateAppWidget(appWidgetIds, views);
 	    }

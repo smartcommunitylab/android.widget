@@ -1,24 +1,17 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.internal.cj;
-
 import eu.trentorise.smartcampus.widget.R;
-import eu.trentorise.smartcampus.widget.shortcuts.StoriesListAdapter.ViewHolder;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,7 +27,7 @@ public class ResumeListAdapter extends ArrayAdapter{
     private final List <BookmarkDescriptor> bklist;
     private final List <String> bkdirectionlist;
     //mi contiene tutti i cliccati o no, potrei passarla al widget
-    public boolean[] checkBoxStateResume;
+    public boolean[] checkBoxStateResume = new boolean [100];
     ViewHolder holder;
     
     public ResumeListAdapter ( Context ctx, int resourceId, List<BookmarkDescriptor> objects, List<String> direction, boolean[] check) {
@@ -64,7 +57,7 @@ public class ResumeListAdapter extends ArrayAdapter{
 
   
     	if (convertView == null) {
-    		convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
+    		convertView = inflater.inflate( R.layout.row_element, parent, false );
     		holder= new ViewHolder();
     		holder.name = (TextView)convertView.findViewById(R.id.name);
     		holder.direction= (TextView)convertView.findViewById(R.id.direction);

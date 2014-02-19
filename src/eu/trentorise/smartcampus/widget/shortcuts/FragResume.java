@@ -8,7 +8,6 @@ import org.json.JSONArray;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.google.android.gms.common.data.c;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -16,17 +15,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.RemoteViews;
 import android.widget.Toast;
-import eu.trentorise.smartcampus.dt.notifications.NotificationsSherlockFragmentDT;
 import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
 import eu.trentorise.smartcampus.widget.R;
@@ -43,7 +38,7 @@ public class FragResume extends SherlockFragment {
 	private WidgetHelper widgetHelper;
 	private boolean[] checkBoxState = new boolean[100];
 	boolean[] checkTOTALE = new boolean[150];
-	int[] iDChecked = new int[100];
+	ArrayList<Integer> iDChecked = new ArrayList<Integer>();
 	boolean[] reChecked;
 	int badCheck = 0;
 	boolean[] checkStories = new boolean[150];
@@ -52,6 +47,7 @@ public class FragResume extends SherlockFragment {
 	boolean[] checkAutobus = new boolean[150];
 	boolean[] checkParcheggi = new boolean[150];
 	boolean[] checkTreni = new boolean[150];
+	
 
 	CheckBox checkBox;
 
@@ -63,7 +59,7 @@ public class FragResume extends SherlockFragment {
 		// Set the result to CANCELED. This will cause the widget host to cancel
 		// out of the widget placement if they press the back button.
 		getSherlockActivity().setResult(
-				SherlockFragmentActivity.RESULT_CANCELED);
+				Activity.RESULT_CANCELED);
 
 		// Find the widget id from the intent.
 		Intent intent = getSherlockActivity().getIntent();
@@ -90,18 +86,10 @@ public class FragResume extends SherlockFragment {
 	}
 
 	@Override
-	public void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		// aggiunto
-		load();
-	}
-
-	@Override
 	public void onStart() {
 		super.onStart();
 		// aggiunto
-		load();
+	//	load();
 	}
 	
 	@Override
@@ -109,6 +97,13 @@ public class FragResume extends SherlockFragment {
 		super.onDestroy();
 		//aggiunto
 		badCheck=0;
+		for (int i=0; i<reChecked.length; i++){
+			reChecked[i]=false;
+		}
+		//Pulisco SharedPreferences
+		SharedPreferences sharedPreferencesResume = getSherlockActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+		sharedPreferencesResume.edit().clear().commit();
+		
 	}
 
 	@Override
@@ -123,13 +118,12 @@ public class FragResume extends SherlockFragment {
 			public void onClick(View v) {
 
 				final Context context = getSherlockActivity();
-				int k = 0;
 				load();
 
+				
 				for (int i = 0; i < reChecked.length; i++) {
 					if (reChecked[i] == true) {
-						iDChecked[k] = i;
-						k = k + 1;
+						iDChecked.add(i);
 					} else {
 						badCheck = badCheck + 1;
 					}
@@ -153,8 +147,17 @@ public class FragResume extends SherlockFragment {
 				final AppWidgetManager appWidgetManager = AppWidgetManager
 						.getInstance(context);
 				
+				//trasformo in array int da arraylist
+				int[] ArrayWrapper = new int[iDChecked.size()];
+
+				for(int i = 0; i < iDChecked.size(); i++) {
+				    if (iDChecked.get(i) != null) {
+				        ArrayWrapper[i] = iDChecked.get(i);
+				    }
+				}
+				
 				StackWidgetProvider.updateAppWidget(context,
-						appWidgetManager, iDChecked);
+						appWidgetManager, ArrayWrapper);  //mAppWidgetId
 				
 				
 				
@@ -182,21 +185,22 @@ public class FragResume extends SherlockFragment {
 				
 				String[] ALLPREFERENCES;
 	
-				ALLPREFERENCES = new String[iDChecked.length];
+				ALLPREFERENCES = new String[ArrayWrapper.length];
 				
-				for (int i=0; i<iDChecked.length; i++){
-					ALLPREFERENCES[iDChecked[i]] = JSONSharedPreferences.convertToJSON(helper.ALLBOOKMARKS[iDChecked[i]]); //DTBOOKMARKS
+				//ERRORE QUI! ??
+				for (int j=0; j<ArrayWrapper.length; j++){
+					ALLPREFERENCES[j] = JSONSharedPreferences.convertToJSON(WidgetHelper.ALLBOOKMARKS[ArrayWrapper[j]]); 
 				}
 				
 				JSONSharedPreferences.saveJSONArray(context, "WIDGET","ALLPREFERENCES", new JSONArray(Arrays.asList(ALLPREFERENCES)));
 
 				final Intent resultValue = new Intent();
 
-				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+				resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);	//mAppWidgetId
 
 				//resultValue.putExtra("final_result", iDChecked);
 
-				getSherlockActivity().setResult(SherlockFragmentActivity.RESULT_OK, resultValue);
+				getSherlockActivity().setResult(Activity.RESULT_OK, resultValue);
 
 				getSherlockActivity().finish();
 
@@ -309,6 +313,7 @@ public class FragResume extends SherlockFragment {
 		return reChecked;
 
 	}
+		
 }
 
 

@@ -3,7 +3,6 @@ package eu.trentorise.smartcampus.widget.shortcuts;
 import com.actionbarsherlock.app.SherlockFragment;
 
 import eu.trentorise.smartcampus.widget.R;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

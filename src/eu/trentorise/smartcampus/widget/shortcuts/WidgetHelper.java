@@ -3,17 +3,11 @@ package eu.trentorise.smartcampus.widget.shortcuts;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.actionbarsherlock.app.SherlockFragment;
-
-import eu.trentorise.smartcampus.dt.custom.data.DTHelper;
 import eu.trentorise.smartcampus.jp.custom.data.SmartLine;
 import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
@@ -42,7 +36,7 @@ public class WidgetHelper implements Serializable{
 	public static BookmarkDescriptor[] JPBOOKMARKSBUSEMI = null;
 
 	public WidgetHelper(Context ctx) {
-		this.ctx = ctx;
+		WidgetHelper.ctx = ctx;
 		initBookmarks();
 	}
 

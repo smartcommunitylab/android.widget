@@ -1,24 +1,17 @@
 package eu.trentorise.smartcampus.widget.shortcuts;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.common.data.c;
-
 import eu.trentorise.smartcampus.widget.R;
-import eu.trentorise.smartcampus.widget.shortcuts.EventListAdapter.ViewHolder;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -61,7 +54,7 @@ public class ParcheggiListAdapter extends ArrayAdapter{
     public View getView ( final int position, View convertView, ViewGroup parent ) {
     	
     	if (convertView == null) {
-    		convertView = (RelativeLayout) inflater.inflate( R.layout.row_element, parent, false );
+    		convertView = inflater.inflate( R.layout.row_element, parent, false );
     		holder= new ViewHolder();
     		holder.name = (TextView)convertView.findViewById(R.id.name);
     		holder.checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);

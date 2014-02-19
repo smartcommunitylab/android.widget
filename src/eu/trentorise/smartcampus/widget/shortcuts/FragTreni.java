@@ -7,11 +7,8 @@ import java.util.List;
 import com.actionbarsherlock.app.SherlockFragment;
 
 import eu.trentorise.smartcampus.jp.custom.data.SmartLine;
-import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
-import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
 import eu.trentorise.smartcampus.widget.R;
 import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.BookmarkDescriptor;
-import eu.trentorise.smartcampus.widget.shortcuts.WidgetHelper.Param;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
