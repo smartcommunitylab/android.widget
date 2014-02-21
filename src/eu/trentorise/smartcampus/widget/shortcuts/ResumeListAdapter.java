@@ -48,7 +48,7 @@ public class ResumeListAdapter extends ArrayAdapter{
 		return position;
 	}
 	
-	
+		
 
 // METODO GETVIEW DOVE VADO A PRENDERE IL PARAMETRI DI BOOKMARKS
   
@@ -63,31 +63,30 @@ public class ResumeListAdapter extends ArrayAdapter{
     		holder.direction= (TextView)convertView.findViewById(R.id.direction);
     		holder.checkBox=(CheckBox) convertView.findViewById(R.id.checkBox);
     
-    	
-    		holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            
-    			@Override
-    			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-    				int getPosition = (Integer) buttonView.getTag();  // Here we get the position that we have set for the checkbox using setTag.
-    				bklist.get(getPosition).setSelected(buttonView.isChecked()); // Set the value of checkbox to maintain its state.
-    				  
-    				checkBoxStateResume[getPosition] = isChecked;  
-    				save(checkBoxStateResume);
-    				System.out.println("POSITION:" + position );
-    				System.out.println("POSITION____GETPOS:" + getPosition );  
-    			}
-    		});
-    	
-    	
     		convertView.setTag(holder);
     		convertView.setTag(R.id.name, holder.name);
     		convertView.setTag(R.id.direction, holder.direction);
     		convertView.setTag(R.id.checkBox, holder.checkBox);
     		
+    	
+    
         	} else {
         		
         		holder = (ViewHolder) convertView.getTag();
         	}
+    	holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    		
+    		@Override
+    		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    			int getPosition = (Integer) buttonView.getTag();  // Here we get the position that we have set for the checkbox using setTag.
+    			bklist.get(getPosition).setSelected(buttonView.isChecked()); // Set the value of checkbox to maintain its state.
+    			
+    			checkBoxStateResume[getPosition] = isChecked;  
+    			save(checkBoxStateResume);
+    			System.out.println("POSITION:" + position );
+    			System.out.println("POSITION____GETPOS:" + getPosition );  
+    		}
+    	});
     	
     		holder.checkBox.setTag(position); // This line is important.
     

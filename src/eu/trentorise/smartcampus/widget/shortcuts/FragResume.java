@@ -92,19 +92,19 @@ public class FragResume extends SherlockFragment {
 		// load();
 	}
 	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		//aggiunto
-		badCheck=0;
-		for (int i=0; i<reChecked.length; i++){
-			reChecked[i]=false;
-		}
-		//Pulisco SharedPreferences
-		SharedPreferences sharedPreferencesResume = getSherlockActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
-		sharedPreferencesResume.edit().clear().commit();
-		
-	}
+//	@Override
+//	public void onDestroy() {
+//		super.onDestroy();
+//		//aggiunto
+//		badCheck=0;
+//		for (int i=0; i<reChecked.length; i++){
+//			reChecked[i]=false;
+//		}
+//		//Pulisco SharedPreferences
+//		SharedPreferences sharedPreferencesResume = getSherlockActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+//		sharedPreferencesResume.edit().clear().commit();
+//		
+//	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -234,6 +234,7 @@ public class FragResume extends SherlockFragment {
 		String agencyId = null;
 		String routeId = null;
 
+		//bus
 		for (BookmarkDescriptor bookmarkDescriptor : bookmark) {
 
 			List<Param> params = bookmarkDescriptor.getParams();
@@ -258,7 +259,14 @@ public class FragResume extends SherlockFragment {
 			filtered_bookmarksdescriptors.add(bookmarkDescriptor);
 
 		}
+		
+		//trains
+		for (BookmarkDescriptor bookmarkDescriptor : TRAINbookmark) {
+			filtered_bookmarksdescriptors.add(bookmarkDescriptor);
+			route_names.add("");
+		}
 
+		//POI
 		for (BookmarkDescriptor bookmarkDescriptor : DTbookmark) {
 			if (bookmarkDescriptor.getName() != getResources().getString(
 					R.string.tab_places)
@@ -270,10 +278,6 @@ public class FragResume extends SherlockFragment {
 			route_names.add("");
 		}
 
-		for (BookmarkDescriptor bookmarkDescriptor : TRAINbookmark) {
-			filtered_bookmarksdescriptors.add(bookmarkDescriptor);
-			route_names.add("");
-		}
 
 		listViewObject = (ListView) getSherlockActivity().findViewById(
 				R.id.fragresume);

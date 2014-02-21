@@ -49,7 +49,7 @@ public class StackWidgetService extends RemoteViewsService {
 }
 
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
-	private static int mCount = 4;
+	private static int mCount;
 	private List<WidgetItem> mWidgetItems = new ArrayList<WidgetItem>();
 	private Context mContext;
 	private int mAppWidgetId;
@@ -99,9 +99,10 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		// or getViewAt(). Taking more than 20 seconds in this call will result
 		// in an ANR.
 		
-		final int countPreferences = ALLPREFERENCES.length;
-		
-		for (int i = 0; i < countPreferences; i++) {						//mCount
+		//Dimensiono gli spazi in base a quanti sono stati cliccati
+		mCount=ALLPREFERENCES.length;
+			
+		for (int i = 0; i < mCount; i++) {						//mCount
 			mWidgetItems.add(new WidgetItem(i + "!"));
 		}
 
@@ -155,9 +156,11 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 		
 			
 				
-		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {		//ALLPREFERENCES è dimensionato come le preferenze selezionate
-			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
+		if (ALLPREFERENCES != null && ALLPREFERENCES[position] != null) {   //ALLPREFERENCES è dimensionato come le preferenze selezionate
 			
+			
+			BookmarkDescriptor myDescriptor = ALLPREFERENCES[position];
+	
 			
 			// set the widgetbutton
 			if (WidgetHelper.PARAM_TYPE.equals(myDescriptor.params.get(0).name)) {	//controllare con gli input da config activity?
@@ -190,7 +193,8 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 					else
 					{
 						//train
-						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 12);
+//						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 12);
+						//controllo contesto getRouteDescriptor i vari parametri
 						rv.setTextViewText(R.id.text_widget_item, mContext.getString(RoutesHelper.getRouteDescriptorByRouteId( myDescriptor.params.get(3).value,myDescriptor.params.get(4).value).getNameResource()));
 						rv.setTextColor(R.id.text_widget_item,Color.BLACK);//Int(R.id.text_widget_item, "setBackgroundColor",Color.BLACK);
 						rv.setInt(R.id.text_widget_item, "setBackgroundResource", R.drawable.rounded_border_jp);
