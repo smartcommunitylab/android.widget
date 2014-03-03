@@ -92,6 +92,7 @@ public class WidgetHelper implements Serializable{
 
 		JPBOOKMARKS = concat(JPBOOKMARKSBUS, JPBOOKMARKSTRAINS);
 		//JPBOOKMARKS = concat(JPBOOKMARKS, JPBOOKMARKSPARK);
+		
 	}
 
 	private BookmarkDescriptor[] initjpbookmarklines(String action, final String agencyId, List<SmartLine> busLines) {
