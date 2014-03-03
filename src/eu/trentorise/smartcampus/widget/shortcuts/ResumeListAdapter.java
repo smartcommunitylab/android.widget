@@ -83,7 +83,7 @@ public class ResumeListAdapter extends ArrayAdapter{
     			
     			checkBoxStateResume[getPosition] = isChecked;  
     			save(checkBoxStateResume);
-    			System.out.println("POSITION:" + position );
+    			System.out.println("POSITION:" + position + "name = " + bklist.get(position).getName());
     			System.out.println("POSITION____GETPOS:" + getPosition );  
     		}
     	});

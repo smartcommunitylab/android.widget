@@ -91,7 +91,7 @@ public class WidgetHelper implements Serializable{
 				});
 
 		JPBOOKMARKS = concat(JPBOOKMARKSBUS, JPBOOKMARKSTRAINS);
-		JPBOOKMARKS = concat(JPBOOKMARKS, JPBOOKMARKSPARK);
+		//JPBOOKMARKS = concat(JPBOOKMARKS, JPBOOKMARKSPARK);
 	}
 
 	private BookmarkDescriptor[] initjpbookmarklines(String action, final String agencyId, List<SmartLine> busLines) {
@@ -122,6 +122,7 @@ public class WidgetHelper implements Serializable{
 		DTBOOKMARKS = new BookmarkDescriptor[] {
 				// bookmark di prova parcheggi
 				
+		/*
 				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
 						ctx.getString(R.string.categories_parking_parkings), new ArrayList<Param>() {
 							{
@@ -131,7 +132,7 @@ public class WidgetHelper implements Serializable{
 
 							}
 						}),
-						
+			*/			
 				new BookmarkDescriptor(ctx.getString(R.string.real_time_info_parking_intent_action),
 						ctx.getString(R.string.categories_parking_sseverino), new ArrayList<Param>() {
 							{
@@ -280,11 +281,11 @@ public class WidgetHelper implements Serializable{
 
 							}
 						}),
-					
 						
+
 						//fine bookmark di prova parcheggi
 						/*
-						//other poi
+						//Inizio POI
 						new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
 								ctx.getString(R.string.tab_places), new ArrayList<Param>() {
 									{
@@ -294,6 +295,7 @@ public class WidgetHelper implements Serializable{
 
 									}
 								}),
+						
 						*/
 						
 						//musei
@@ -309,18 +311,16 @@ public class WidgetHelper implements Serializable{
 						}),
 						
 						//mobilità
-						new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
-								ctx.getString(R.string.categories_poi_mobility), new ArrayList<Param>() {
-									{
-										add(new Param(PARAM_TYPE, TYPE_DT));
-										add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
-										add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_p_mobility)));
-										add(new Param(PARAM_CATEGORY, ctx.getString(R.string.mobility_category)));
+				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
+						ctx.getString(R.string.categories_poi_mobility), new ArrayList<Param>() {	
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_p_mobility)));
+								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.mobility_category)));
 
-									}
-								}),
-						
-						
+							}
+						}),	
 						
 					//parcheggi	
 				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),

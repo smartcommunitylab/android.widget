@@ -48,7 +48,7 @@ public class FragResume extends SherlockFragment {
 	boolean[] checkParcheggi = new boolean[150];
 	boolean[] checkTreni = new boolean[150];
 	
-
+public static int test=0;
 	CheckBox checkBox;
 
 	@Override
@@ -155,6 +155,14 @@ public class FragResume extends SherlockFragment {
 				        ArrayWrapper[i] = iDChecked.get(i);
 				    }
 				}
+				
+				
+				//grezzo
+				for(int i=60; i < ArrayWrapper.length; i++){
+					ArrayWrapper[i]=ArrayWrapper[i]+1;
+				}
+				
+				
 				
 				StackWidgetProvider.updateAppWidget(context,
 						appWidgetManager, ArrayWrapper);  //mAppWidgetId
@@ -274,7 +282,8 @@ public class FragResume extends SherlockFragment {
 							.getString(R.string.tab_stories)
 					&& bookmarkDescriptor.getName() != getResources()
 							.getString(R.string.tab_events))
-				filtered_bookmarksdescriptors.add(bookmarkDescriptor);
+					
+			filtered_bookmarksdescriptors.add(bookmarkDescriptor);
 			route_names.add("");
 		}
 
@@ -285,6 +294,8 @@ public class FragResume extends SherlockFragment {
 				R.layout.row_element, filtered_bookmarksdescriptors,
 				route_names, checkTOTALE));
 
+	
+		
 	}
 
 	public boolean[] load() {
