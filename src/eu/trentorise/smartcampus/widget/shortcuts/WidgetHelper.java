@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import eu.trentorise.smartcampus.dt.custom.data.DTHelper;
 import eu.trentorise.smartcampus.jp.custom.data.SmartLine;
 import eu.trentorise.smartcampus.jp.helper.RoutesHelper;
 import eu.trentorise.smartcampus.jp.model.RouteDescriptor;
