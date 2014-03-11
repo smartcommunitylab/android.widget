@@ -96,7 +96,11 @@ public class WidgetHelper implements Serializable{
 		
 	}
 
+	
+	
+	
 	private BookmarkDescriptor[] initjpbookmarklines(String action, final String agencyId, List<SmartLine> busLines) {
+
 		List<BookmarkDescriptor> lines = new ArrayList<WidgetHelper.BookmarkDescriptor>();
 		for (final SmartLine line : busLines) {
 			for (final String route : line.getRouteID()){
@@ -105,12 +109,20 @@ public class WidgetHelper implements Serializable{
 				name = line.getRoutesShorts().get(0);
 			if ("".equals(name))
 				name=ctx.getString(RoutesHelper.getRouteDescriptorByRouteId(route).getNameResource());
+			
 			lines.add(new BookmarkDescriptor(action, name, new ArrayList<Param>() {
 				{
 					add(new Param(PARAM_TYPE, TYPE_JP));
 					add(new Param(PARAM_COLOR, Integer.toString(R.color.jpappcolor)));
 					add(new Param(PARAM_RESOURCE, Integer.toString(line.getColor())));
 					add(new Param(PARAM_AGENCY_ID, agencyId));
+//					TEST
+//					if (route.compareTo("05R")==0){
+//						add(new Param(PARAM_ROUTE_ID, "05A"));
+//					}
+//					else
+					//TEST
+					
 					add(new Param(PARAM_ROUTE_ID, route));
 
 				}
@@ -434,7 +446,7 @@ public class WidgetHelper implements Serializable{
 
 							}
 						}),
-						
+						/*
 						//famiglia
 				new BookmarkDescriptor(ctx.getString(R.string.places_intent_action),
 						ctx.getString(R.string.categories_poi_family), new ArrayList<Param>() {
@@ -446,7 +458,7 @@ public class WidgetHelper implements Serializable{
 
 							}
 						}),
-						/*
+						
 						
 								
 						*/
@@ -494,7 +506,7 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.office_category)));
 							}
 						}),
-						
+					/*	
 				//università
 				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
 						ctx.getString(R.string.categories_story_university), new ArrayList<Param>() {
@@ -505,7 +517,7 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.university_category)));
 							}
 						}),
-						
+						*/
 				//cultura
 				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
 						ctx.getString(R.string.categories_story_culture), new ArrayList<Param>() {
@@ -516,7 +528,18 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.culture_category)));
 							}
 						}),
-						
+					/*	
+				//altre storie??
+				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action),
+						ctx.getString(R.string.tab_stories), new ArrayList<Param>() {
+							{
+								add(new Param(PARAM_TYPE, TYPE_DT));
+								add(new Param(PARAM_COLOR, Integer.toString(R.color.dtappcolor)));
+								add(new Param(PARAM_RESOURCE, Integer.toString(R.drawable.ic_s_other)));
+
+							}
+						}),
+						*/
 				//altre storie
 				new BookmarkDescriptor(ctx.getString(R.string.stories_intent_action), "Other Story",
 						new ArrayList<Param>() {
@@ -527,6 +550,7 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.other_story_category)));
 							}
 						}),
+						
 				/*		
 				//altri eventi??
 				new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
@@ -614,7 +638,7 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.exhibitions_category)));
 							}
 						}),
-				
+				/*
 				//famiglia
 				new BookmarkDescriptor(ctx.getString(R.string.events_intent_action),
 						ctx.getString(R.string.categories_event_family), new ArrayList<Param>() {
@@ -625,7 +649,7 @@ public class WidgetHelper implements Serializable{
 								add(new Param(PARAM_CATEGORY, ctx.getString(R.string.family_category)));
 							}
 						}),
-						
+						*/
 				//altri eventi
 				new BookmarkDescriptor(ctx.getString(R.string.events_intent_action), "Other events",
 						new ArrayList<Param>() {

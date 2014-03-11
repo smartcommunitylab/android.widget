@@ -49,19 +49,33 @@ public class StackWidgetProvider extends AppWidgetProvider {
 	public void onReceive(Context context, Intent intent) {
 		AppWidgetManager mgr = AppWidgetManager.getInstance(context);
 		if (intent.getAction().equals(INTENT_ACTION)) {
+			
 			//commentate prima
 			int appWidgetId =
 			 intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
 			 AppWidgetManager.INVALID_APPWIDGET_ID);
-			 int viewIndex = intent.getIntExtra(EXTRA_INTENT, 0);		//era EXTRA_ITEM
+			 int viewIndex = intent.getIntExtra(EXTRA_INTENT, 0);	//era EXTRA_ITEM
+			 
+			 /*
 			 Toast.makeText(context, "Touched view " + viewIndex,
 			 Toast.LENGTH_SHORT).show();
-
+			  */
+			
 			String action = intent.getExtras().getString(EXTRA_INTENT);
 			Intent newintent = new Intent(action);
 			newintent.putExtras(intent);
 			newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			context.startActivity(newintent);
+			
+			
+			
+			/*
+			String action = intent.getExtras().getString(EXTRA_INTENT);
+			Intent newintent = new Intent(action);
+			newintent.putExtras(intent);
+			newintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			context.startActivity(newintent);
+			*/
 		}
 		super.onReceive(context, intent);
 	}

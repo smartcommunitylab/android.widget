@@ -195,7 +195,6 @@ public static int test=0;
 	
 				ALLPREFERENCES = new String[ArrayWrapper.length];
 				
-				//ERRORE QUI! ??
 				for (int j=0; j<ArrayWrapper.length; j++){
 					ALLPREFERENCES[j] = JSONSharedPreferences.convertToJSON(WidgetHelper.ALLBOOKMARKS[ArrayWrapper[j]]); 
 				}

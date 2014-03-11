@@ -193,7 +193,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 					else
 					{
 						//train
-//						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 12);
+						rv.setTextViewTextSize(R.id.text_widget_item, TypedValue.COMPLEX_UNIT_DIP, 12);
 						//controllo contesto getRouteDescriptor i vari parametri
 						rv.setTextViewText(R.id.text_widget_item, mContext.getString(RoutesHelper.getRouteDescriptorByRouteId( myDescriptor.params.get(3).value,myDescriptor.params.get(4).value).getNameResource()));
 						rv.setTextColor(R.id.text_widget_item,Color.BLACK);//Int(R.id.text_widget_item, "setBackgroundColor",Color.BLACK);
